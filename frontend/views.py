@@ -1,5 +1,6 @@
 import re
 
+from django.db.models import Q
 from django.shortcuts import redirect, render
 from pypinyin.contrib.tone_convert import to_tone as pinyin_normalizer
 
@@ -59,7 +60,9 @@ def view_article(request, article_title):
     # endregion
 
     # region Adding similar words
-    similar_articles = Article.objects.filter(title__icontains=article_title)
+    similar_articles = Article.objects.filter(title__icontains=article_title).filter(
+        ~Q(title=article_title)
+    )
     # endregion
 
     context = {

@@ -16,15 +16,13 @@
 
 <p>{{article.body | safe}}</p>
 
-{% if examples %}
+{% if similar_articles %}
 <h3>Яшчэ па гэтым запыце:</h3>
     <ol>
     {% for similar_article in similar_articles %}
-        {% if similar_article.title != article.title %}
         <li>
             <a href="/article/{{similar_article.title}}/">{{similar_article.title}}</a>
         </li>
-        {% endif %}
     {% endfor %}
     </ol>
 {% endif %}
