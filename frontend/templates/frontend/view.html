@@ -1,12 +1,17 @@
 {% extends "frontend/base.html" %}
+{% load static %}
 
 {% block title %}{{article.title}}{% endblock %}
 
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/view.css' %}">
+{% endblock %}
+
 {% block main %}
-<h1>{{article.title}}</h1>
+<h1 id="article-title">{{article.title}}</h1>
 
 {% if article.translation_direction == "KB" %}
-    <h2>{{pinyin}}</h2>
+    <h2 id="article-pinyin">{{pinyin}}</h2>
 {% endif %}
 
 <p>{{article.body}}</p>

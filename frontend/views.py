@@ -5,7 +5,9 @@ from dictionary.models import Article
 
 
 def index(request):
-    return render(request, "frontend/index.html")
+    context = {"article_number": Article.objects.count()}
+
+    return render(request, "frontend/index.html", context)
 
 
 def search(request):

@@ -1,7 +1,6 @@
 from django.db import models
 
 
-# Create your models here.
 class Article(models.Model):
     class TranslationDirection(models.TextChoices):
         BEL_TO_CN = "BK"
@@ -16,3 +15,8 @@ class Article(models.Model):
         choices=TranslationDirection,
         default=TranslationDirection.CN_TO_BEL,
     )
+
+
+class Example(models.Model):
+    chinese_text = models.TextField()
+    belarusian_text = models.TextField()
