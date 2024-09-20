@@ -11,8 +11,20 @@
 <h1 id="article-title">{{article.title}}</h1>
 
 {% if article.translation_direction == "KB" %}
-    <h2 id="article-pinyin">{{pinyin}}</h2>
+    <h3 id="article-pinyin">{{pinyin}}</h3>
 {% endif %}
 
-<p>{{article.body}}</p>
+<p>{{article.body | safe}}</p>
+
+{% if examples %}
+<h3>Прыклады</h3>
+
+    {% for example in examples %}
+    <div class="article-example">
+        <p class="article-example-cn">{{example.cn | safe}}</p>
+        <p class="article-example-be">{{example.be | safe}}</p>
+    </div>
+    {% endfor %}
+{% endif %}
+
 {% endblock %}

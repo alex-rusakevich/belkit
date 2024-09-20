@@ -1,11 +1,16 @@
+import re
+
 from django.shortcuts import redirect, render
 from pypinyin.contrib.tone_convert import to_tone as pinyin_normalizer
 
-from dictionary.models import Article
+from dictionary.models import Article, Example
 
 
 def index(request):
-    context = {"article_number": Article.objects.count()}
+    context = {
+        "articles_number": Article.objects.count(),
+        "examples_number": Example.objects.count(),
+    }
 
     return render(request, "frontend/index.html", context)
 
@@ -27,8 +32,29 @@ def view_article(request, article_title):
 
     if article.translation_direction == Article.TranslationDirection.CN_TO_BEL:
         pinyin = pinyin_normalizer(article.pinyin)
+        examples_objects = Example.objects.filter(chinese_text__icontains=article_title)
     else:
         pinyin = ""
+        examples_objects = Example.objects.filter(
+            belarusian_text__icontains=article_title
+        )
 
-    context = {"article": article, "pinyin": pinyin}
+    examples = []
+    for example_obj in examples_objects:
+        examples.append(
+            {
+                "be": re.sub(
+                    article_title,
+                    f"<span class='text-success'>{article_title}</span>",
+                    example_obj.belarusian_text,
+                ),
+                "cn": re.sub(
+                    article_title,
+                    f"<span class='text-success'>{article_title}</span>",
+                    example_obj.chinese_text,
+                ),
+            }
+        )
+
+    context = {"article": article, "pinyin": pinyin, "examples": examples}
     return render(request, "frontend/view.html", context)
