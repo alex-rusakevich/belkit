@@ -1,24 +1,13 @@
-{% load static %}
+{% extends "frontend/base.html" %}
 
-<!DOCTYPE html>
-<html lang="be">
+{% block title %}{{article.title}}{% endblock %}
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Беларуска-кітайскі анлайн-слоўнік</title>
+{% block main %}
+<h1>{{article.title}}</h1>
 
-    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
-</head>
+{% if article.translation_direction == "KB" %}
+    <h2>{{pinyin}}</h2>
+{% endif %}
 
-<body>
-    <h1>{{article.title}}</h1>
-
-    {% if article.translation_direction == "KB" %}
-        <h2>{{pinyin}}</h2>
-    {% endif %}
-
-    <p>{{article.body}}</p>
-</body>
-
-</html>
+<p>{{article.body}}</p>
+{% endblock %}

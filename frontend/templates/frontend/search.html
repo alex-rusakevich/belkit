@@ -1,26 +1,15 @@
-{% load static %}
+{% extends "frontend/base.html" %}
 
-<!DOCTYPE html>
-<html lang="be">
+{% block title %}Пошук "{{query}}"{% endblock %}
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Беларуска-кітайскі анлайн-слоўнік</title>
+{% block main %}
+<h1>Вынікі пошуку па запыце "{{query}}"</h1>
 
-    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
-</head>
-
-<body>
-    <h1>Вынікі пошуку па запыце "{{query}}"</h1>
-
-    <ol>
-    {% for article in articles %}
-        <li>
-            <a href="/article/{{article.title}}/">{{article.title}}</a>
-        </li>
-    {% endfor %}
-    </ol>
-</body>
-
-</html>
+<ol>
+{% for article in articles %}
+    <li>
+        <a href="/article/{{article.title}}/">{{article.title}}</a>
+    </li>
+{% endfor %}
+</ol>
+{% endblock %}
