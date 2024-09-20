@@ -13,7 +13,10 @@
 
 <body>
     <h1>{{article.title}}</h1>
-    <h2>{{article.pinyin}}</h2>
+
+    {% if article.translation_direction == "KB" %}
+        <h2>{{pinyin}}</h2>
+    {% endif %}
 
     <p>{{article.body}}</p>
 </body>

@@ -1,4 +1,5 @@
 from django.shortcuts import redirect, render
+from pypinyin.contrib.tone_convert import to_tone as pinyin_normalizer
 
 from dictionary.models import Article
 
@@ -22,5 +23,10 @@ def search(request):
 def view_article(request, article_title):
     article = Article.objects.filter(title=article_title).first()
 
-    context = {"article": article}
+    if article.translation_direction == Article.TranslationDirection.CN_TO_BEL:
+        pinyin = pinyin_normalizer(article.pinyin)
+    else:
+        pinyin = ""
+
+    context = {"article": article, "pinyin": pinyin}
     return render(request, "frontend/view.html", context)
