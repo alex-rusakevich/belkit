@@ -1,0 +1,21 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="be">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Беларуска-кітайскі анлайн-слоўнік</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+</head>
+
+<body>
+    <form action="/search" method="get">
+        <input type="text" id="search-query-input" name="query">
+        <input type="submit" value="Пошук">
+    </form> 
+</body>
+
+</html>

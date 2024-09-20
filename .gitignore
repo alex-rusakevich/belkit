@@ -163,4 +163,5 @@ cython_debug/
 
 #region Project-specific settings
 .vscode/
+/static/
 #endregion
