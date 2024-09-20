@@ -39,6 +39,7 @@ def view_article(request, article_title):
             belarusian_text__icontains=article_title
         )
 
+    # region Adding examples
     examples = []
     for example_obj in examples_objects:
         examples.append(
@@ -55,6 +56,16 @@ def view_article(request, article_title):
                 ),
             }
         )
+    # endregion
 
-    context = {"article": article, "pinyin": pinyin, "examples": examples}
+    # region Adding similar words
+    similar_articles = Article.objects.filter(title__icontains=article_title)
+    # endregion
+
+    context = {
+        "article": article,
+        "pinyin": pinyin,
+        "examples": examples,
+        "similar_articles": similar_articles,
+    }
     return render(request, "frontend/view.html", context)
