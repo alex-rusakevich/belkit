@@ -4,12 +4,17 @@ a.navbar-brand {
     gap: 8px;
 }
 
-nav.navbar > div.container-fluid, main > div.container {
+nav.navbar > div.container-fluid, main > div.container, div#search-box {
     max-width: 1320px;
 }
 
-nav.navbar {
+div#search-box > div {
     margin-bottom: 12px;
+    margin-top: 12px;
+    padding: 24px;
+
+    background-image: url(/static/img/searchbox_background.jpg);
+    border-radius: 8px;
 }
 
 p {
