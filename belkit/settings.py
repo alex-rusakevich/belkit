@@ -14,6 +14,7 @@ import os
 from pathlib import Path
 
 import dj_database_url
+from django.utils.translation import gettext_lazy as _
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -114,13 +115,22 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = "be-BE"
+LANGUAGE_CODE = "be"
 
 TIME_ZONE = "Europe/Minsk"
 
 USE_I18N = True
 
 USE_TZ = True
+
+LANGUAGES = [
+    ("be", _("Belarusian")),
+    ("cn", _("Chinese")),
+    ("ru", _("Russian")),
+    ("en", _("English")),
+]
+
+LOCALE_PATHS = [os.path.join(BASE_DIR, "locale")]
 
 
 # Static files (CSS, JavaScript, Images)

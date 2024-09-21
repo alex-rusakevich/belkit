@@ -1,3 +1,13 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Article, Example
+
+
+@admin.register(Article)
+class ArticleAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Example)
+class ExampleAdmin(admin.ModelAdmin):
+    pass

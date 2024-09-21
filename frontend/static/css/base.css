@@ -10,7 +10,6 @@ nav.navbar > div.container-fluid, main > div.container, div#search-box {
 
 div#search-box > div {
     margin-bottom: 12px;
-    margin-top: 12px;
     padding: 24px;
 
     background-image: url(/static/img/searchbox_background.jpg);
