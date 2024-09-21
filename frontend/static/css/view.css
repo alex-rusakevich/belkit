@@ -1,5 +1,5 @@
 #article-title {
-    margin-bottom: 0;
+    margin-bottom: 8px;
     display: flex;
     gap: 4px;
 }
@@ -11,3 +11,38 @@
 .article-example > .article-example-be {
     margin-bottom: 8px;
 }
+
+div#article-body {
+    font-size: 14pt;
+}
+
+/* region Dict */
+div.dict-m1 {
+    padding-left: 0px;
+}
+
+div.dict-m2 {
+    padding-left: 16px;
+}
+
+div.dict-3 {
+    padding-left: 32px;
+}
+
+span.dict-i {
+    font-style: italic;
+}
+
+span.dict-e {
+    color: var(--bs-secondary);
+}
+
+span.dict-p {
+    color: var(--bs-success);
+    font-style: italic;
+}
+
+span.dict-c {
+    color: var(--bs-success);
+}
+/* endregion */

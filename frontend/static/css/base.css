@@ -16,10 +16,6 @@ div#search-box > div {
     border-radius: 8px;
 }
 
-p {
-    font-size: 16pt;
-}
-
 header {
     user-select: none;
 }

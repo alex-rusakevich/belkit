@@ -5,6 +5,7 @@ from django.shortcuts import redirect, render
 from pypinyin.contrib.tone_convert import to_tone as pinyin_normalizer
 
 from dictionary.models import Article, Example
+from dictionary.utils.dsl import dsl_to_html
 
 
 def index(request):
@@ -65,6 +66,8 @@ def view_article(request, article_title):
         ~Q(title=article_title)
     )
     # endregion
+
+    article.body = dsl_to_html(article.body)
 
     context = {
         "article": article,
