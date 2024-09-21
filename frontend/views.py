@@ -76,3 +76,12 @@ def view_article(request, article_title):
         "similar_articles": similar_articles,
     }
     return render(request, "frontend/view.html", context)
+
+
+def tone_numbers_to_pinyin(request):
+    tone_and_numbers = request.GET.get("tone_and_numbers", "")
+    if tone_and_numbers:
+        tone_and_numbers = pinyin_normalizer(tone_and_numbers)
+
+    context = {"tone_and_numbers": tone_and_numbers}
+    return render(request, "frontend/utils/tone-numbers-to-pinyin.html", context)

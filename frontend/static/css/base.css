@@ -19,3 +19,7 @@ div#search-box > div {
 header {
     user-select: none;
 }
+
+p {
+    margin-bottom: 8px;
+}

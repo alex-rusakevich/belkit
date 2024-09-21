@@ -28,10 +28,15 @@
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Галоўная</a>
+                        <a class="nav-link" aria-current="page" href="/">Галоўная</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/download/">Спампаваць</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Інструменты
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <li><a class="dropdown-item" href="/utils/tone-numbers-to-pinyin/">З тонаў з лічбамі ў піньінь</a></li>
+                        </ul>
                     </li>
                     </ul>
                 </div>
@@ -44,7 +49,7 @@
                         </li>
                         {% endif %}
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/admin">Панэль рэдактара</a>
+                            <a class="nav-link" aria-current="page" href="/admin">Панэль рэдактара</a>
                         </li>
                     </ul>
                 </div>

@@ -17,6 +17,11 @@
 {% else %}
 <h1>Нічога не знойдзена</h1>
 <p>Праверце, ці з'яўляецца форма слова, якое вы шукаеце, інфінітывам.</p>
+
+{% if user.is_authenticated %}
+<a href="/admin/dictionary/article/add/?title={{query}}">Стварыць артыкул "{{query}}"</a>
+{% endif %}
+
 {% endif%}
 
 {% endblock %}

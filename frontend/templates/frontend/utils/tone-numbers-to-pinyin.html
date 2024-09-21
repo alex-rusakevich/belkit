@@ -1,0 +1,17 @@
+{% extends "frontend/base.html" %}
+
+{% block title %}З тонаў з лічбамі ў піньінь{% endblock %}
+
+{% block main %}
+<h1>З тонаў з лічбамі ў піньінь</h1>
+<h5>Напрыклад, ni3hao3 → nǐhǎo</h5>
+
+<form action="/utils/tone-numbers-to-pinyin/" method="get">
+    <input class="form-control me-2 mb-3" aria-label="Tone and numbers" name="tone_and_numbers">
+    <button class="btn btn-success mb-3" type="submit">Атрымаць рэзультат</button>
+    
+    {% if tone_and_numbers %}
+    <p>{{tone_and_numbers}}</p>
+    {% endif %}
+</form>
+{% endblock %}
