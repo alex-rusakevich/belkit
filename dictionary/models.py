@@ -24,6 +24,9 @@ class Article(models.Model):
         verbose_name=_("Translation direction"),
     )
 
+    def __str__(self):
+        return _('Article "{title}"').format(title=self.title)
+
 
 class Example(models.Model):
     class Meta:
@@ -32,3 +35,6 @@ class Example(models.Model):
 
     chinese_text = models.TextField(verbose_name=_("Chinese text"))
     belarusian_text = models.TextField(verbose_name=_("Belarusian text"))
+
+    def __str__(self):
+        return _("Example #{id}").format(id=self.id)

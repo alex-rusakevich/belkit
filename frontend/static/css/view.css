@@ -1,5 +1,7 @@
 #article-title {
     margin-bottom: 0;
+    display: flex;
+    gap: 4px;
 }
 
 .article-example p {

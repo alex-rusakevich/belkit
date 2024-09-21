@@ -55,6 +55,7 @@ def view_article(request, article_title):
                     f"<span class='text-success'>{article_title}</span>",
                     example_obj.chinese_text,
                 ),
+                "id": example_obj.id,
             }
         )
     # endregion

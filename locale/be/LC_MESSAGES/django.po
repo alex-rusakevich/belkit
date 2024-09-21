@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-21 11:43+0300\n"
-"PO-Revision-Date: 2024-09-21 11:43+0300\n"
+"POT-Creation-Date: 2024-09-21 14:01+0300\n"
+"PO-Revision-Date: 2024-09-21 14:02+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: be\n"
@@ -72,18 +72,32 @@ msgstr "Змест"
 msgid "Translation direction"
 msgstr "Накірунак перакладу"
 
-#: dictionary/models.py:30
+#: dictionary/models.py:28
+#, python-brace-format
+msgid "Article \"{title}\""
+msgstr "Артыкул \"{title}\""
+
+#: dictionary/models.py:33
 msgid "Example"
 msgstr "Прыклад"
 
-#: dictionary/models.py:31
+#: dictionary/models.py:34
 msgid "Examples"
 msgstr "Прыклады"
 
-#: dictionary/models.py:33
+#: dictionary/models.py:36
 msgid "Chinese text"
 msgstr "Кітайскі тэкст"
 
-#: dictionary/models.py:34
+#: dictionary/models.py:37
 msgid "Belarusian text"
 msgstr "Беларускі тэкст"
+
+#: dictionary/models.py:40
+#, python-brace-format
+msgid "Example #{id}"
+msgstr "Прыклад №{id}"
+
+#: frontend/admin.py:5 frontend/admin.py:6
+msgid "BelKit editor & admin panel"
+msgstr "Панэль рэдактара і адміністратара БелКіт"
