@@ -19,3 +19,7 @@ div#search-box > div {
 p {
     font-size: 16pt;
 }
+
+header {
+    user-select: none;
+}
