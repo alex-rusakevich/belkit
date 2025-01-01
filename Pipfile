@@ -10,6 +10,8 @@ dj-database-url = "*"
 djangorestframework = "*"
 python-dotenv = "*"
 a2wsgi = "*"
+channels = "*"
+django-nextjs = "*"
 
 [dev-packages]
 uvicorn = "*"
@@ -18,4 +20,5 @@ uvicorn = "*"
 python_version = "3.12"
 
 [scripts]
-pysrv = "python -m uvicorn belkit.asgi:application --reload"
+pydev = "python -m uvicorn belkit.asgi:application --reload"
+nextdev = "cd frontend/nextjs && npm run dev"
