@@ -154,7 +154,24 @@ USE_I18N = True
 USE_TZ = True
 
 
+# region Static files (CSS, JavaScript, Images)
 STATIC_URL = "static/"
+STATIC_ROOT = os.path.expandvars("~/public_html/static/")
+MEDIA_URL = "media/"
+MEDIA_ROOT = os.path.expandvars("~/public_html/media/")
+
+MAX_UPLOAD_SIZE = os.environ.get("MAX_UPLOAD_SIZE", 8 * 1024 * 1024)  # 8 MB max size
+MAX_FILES_AT_ONCE = os.environ.get("MAX_FILES_AT_ONCE", 15)
+
+if DEBUG:
+    STATIC_ROOT = os.path.join(BASE_DIR, "static")
+    MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+STATICFILES_DIRS = (
+    BASE_DIR / os.path.join("frontend", "static"),
+    BASE_DIR / os.path.join("frontend", "nextjs", "static"),
+)
+# endregion
 
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

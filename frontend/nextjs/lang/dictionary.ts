@@ -1,0 +1,29 @@
+import be from './dictionaries/be.json';
+
+interface IDictionary {
+    whatDoYouSearch: string;
+    search: string;
+    fullName: string;
+    mainPage: string;
+    addPage: string;
+    stats: string;
+    download: string;
+    additionalUtils: string;
+    signIn: string;
+}
+
+const dictionaries: { [key: string]: IDictionary } = {
+    "be": be
+}
+
+const defaultLanguage = 'be';
+
+function getDictionary(lang: string = defaultLanguage): IDictionary {
+    if (lang in dictionaries) {
+        return dictionaries[lang];
+    } else {
+        return dictionaries[defaultLanguage];
+    }
+}
+
+export { getDictionary };
