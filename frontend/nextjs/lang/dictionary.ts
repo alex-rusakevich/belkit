@@ -1,6 +1,8 @@
 import be from './dictionaries/be.json';
 
 interface IDictionary {
+    title: string;
+    description: string;
     whatDoYouSearch: string;
     search: string;
     fullName: string;
