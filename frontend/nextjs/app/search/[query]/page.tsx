@@ -29,7 +29,7 @@ export default function Home() {
         </div>
       </header>
 
-      <main className="">
+      <main className="mb-5">
         <div className="flex flex-col justify-center space-y-5 items-center">
           <Article title={articleTitle} pronunciation={articlePronun} mdText={articleMd}></Article>
           <Article title={articleTitle} pronunciation={articlePronun} mdText={articleMd}></Article>

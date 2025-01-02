@@ -1,6 +1,7 @@
 import { remark } from 'remark';
 import html from 'remark-html';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
+import { Pencil } from 'lucide-react';
 
 
 interface IArticle {
@@ -18,6 +19,11 @@ const Article = function ({ title, pronunciation = '', mdText }: IArticle) {
     const contentHtml = processedContent.toString();
 
     return (<Card className='w-full max-w-2xl'>
+
+        <button className='float-right m-6'>
+            <Pencil />
+        </button>
+
         <CardHeader>
             <CardTitle>{title}</CardTitle>
             {pronunciation ? <CardDescription>{pronunciation}</CardDescription> : null}
