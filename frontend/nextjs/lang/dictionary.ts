@@ -12,6 +12,7 @@ interface IDictionary {
     download: string;
     additionalUtils: string;
     signIn: string;
+    aboutUs: string;
 }
 
 const dictionaries: { [key: string]: IDictionary } = {

@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { getDictionary } from "@/lang/dictionary";
 
 export const metadata: Metadata = {
-  title: "БелКіт",
-  description: "Беларуска-кітайскі анлайн слоўнік — гэта адкрытая анлайн-платформа для дапамогі перакладчыкам і ўмацавання культурнай сувязі Беларусі і Кітая",
+  title: getDictionary().title,
+  description: getDictionary().description,
   icons: [
     { rel: "icon", url: "/static/favicon.ico" }
   ]

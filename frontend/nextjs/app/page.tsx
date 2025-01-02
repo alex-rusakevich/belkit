@@ -1,4 +1,4 @@
-import SearchPanel from "@/components/main/search";
+import SearchPanel from "@/components/main/searchPanel";
 
 
 
