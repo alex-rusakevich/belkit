@@ -153,7 +153,7 @@ const SearchPanel = () => {
 
     return (
         <div className="flex flex-col space-y-2 w-full max-w-2xl">
-            <div className="p-3 w-full rounded-xl border shadow mb-3">
+            <div className="p-3 w-full rounded-xl border shadow mb-3 bg-card">
                 <h1 className="font-bold pb-2 text-center">{dictionary.fullName}</h1>
 
                 <div className="flex items-center space-x-2">
