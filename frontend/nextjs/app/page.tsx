@@ -5,7 +5,7 @@ import SearchPanel from "@/components/main/searchPanel";
 export default function Home() {
   return (
     <>
-      <main className="h-full px-10 py-10">
+      <main className="h-full">
         <div className="flex justify-center items-center h-full">
           <SearchPanel />
         </div>

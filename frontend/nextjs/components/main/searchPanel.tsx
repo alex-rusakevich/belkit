@@ -11,6 +11,11 @@ import React from "react";
 import { cn } from "@/lib/utils"
 
 
+interface ISearchPanel {
+    initialValue?: string;
+}
+
+
 const components: { title: string; href: string; description: string }[] = [
     {
         title: "Alert Dialog",
@@ -83,11 +88,11 @@ const SearchPanelMenu = () => {
     return (<NavigationMenu className="
         rounded-xl border shadow w-full 
         max-w-2xl justify-start p-[4px]
-        first:[&_svg]:pr-2">
+        first:[&_svg]:pr-2 flex-initial bg-card">
         <ScrollArea className="overflow-x-auto mx-auto">
             <NavigationMenuList className="justify-start mx-auto">
                 <NavigationMenuItem>
-                    <Link href="#" legacyBehavior passHref>
+                    <Link href="/" legacyBehavior passHref>
                         <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                             <House />
                             <span>{dictionary.mainPage}</span>
@@ -148,7 +153,7 @@ const SearchPanelMenu = () => {
     );
 }
 
-const SearchPanel = () => {
+const SearchPanel = ({ initialValue = "" }: ISearchPanel) => {
     const dictionary = getDictionary();
 
     return (
@@ -157,7 +162,7 @@ const SearchPanel = () => {
                 <h1 className="font-bold pb-2 text-center">{dictionary.fullName}</h1>
 
                 <div className="flex items-center space-x-2">
-                    <Input type="text" placeholder={dictionary.whatDoYouSearch} className="" />
+                    <Input type="text" placeholder={dictionary.whatDoYouSearch} className="" defaultValue={initialValue} />
                     <Button type="submit" className="">{dictionary.search}</Button>
                 </div>
             </div>
