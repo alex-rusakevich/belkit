@@ -16,7 +16,10 @@ const Article = function ({ title, pronunciation = '', mdText }: IArticle) {
         .use(html)
         .processSync(mdText);
 
-    const contentHtml = processedContent.toString();
+    const contentHtml = processedContent.toString()
+        .replaceAll('[green]', '<span style="color: green">')
+        .replaceAll(/\[gr[ae]y\]/g, '<span style="color: gray">')
+        .replaceAll(/\[\/green\]|\[\/gr[ae]y\]/g, '</span>');
 
     return (<Card className='w-full max-w-2xl'>
 
@@ -29,7 +32,7 @@ const Article = function ({ title, pronunciation = '', mdText }: IArticle) {
             {pronunciation ? <CardDescription>{pronunciation}</CardDescription> : null}
         </CardHeader>
         <CardContent>
-            <div className='' dangerouslySetInnerHTML={{ __html: contentHtml }} />
+            <div className='[&_ol]:list-decimal [&_ol]:pl-5' dangerouslySetInnerHTML={{ __html: contentHtml }} />
         </CardContent>
     </Card>)
 }

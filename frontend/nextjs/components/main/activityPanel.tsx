@@ -1,3 +1,6 @@
+'use client'
+
+import { useRouter } from 'next/navigation'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { getDictionary } from "@/lang/dictionary";
@@ -12,6 +15,10 @@ import { cn } from "@/lib/utils"
 
 
 interface ISearchPanel {
+    initialValue?: string;
+}
+
+interface IActivityPanel {
     initialValue?: string;
 }
 
@@ -154,20 +161,38 @@ const SearchPanelMenu = () => {
 }
 
 const SearchPanel = ({ initialValue = "" }: ISearchPanel) => {
+    const router = useRouter()
     const dictionary = getDictionary();
 
+    const [searchQuery, setSearchQuery] = React.useState(initialValue)
+
+    return (<div className="p-3 w-full rounded-xl border shadow mb-3 bg-card">
+        <h1 className="font-bold pb-2 text-center">{dictionary.fullName}</h1>
+
+        <div className="flex items-center space-x-2">
+            <Input type="text" placeholder={dictionary.whatDoYouSearch}
+                className="" value={searchQuery} onChange={e => setSearchQuery(e.target.value)} />
+            <Button type="submit" className=""
+                onClick={() => {
+                    const query = searchQuery.trim()
+
+                    if (query == '') {
+                        router.push('/')
+                        return
+                    }
+
+                    router.push(`/search/${query}/`)
+                }}>{dictionary.search}</Button>
+        </div>
+    </div>)
+}
+
+const ActivityPanel = ({ initialValue = '' }: IActivityPanel) => {
     return (
         <div className="flex flex-col space-y-2 w-full max-w-2xl">
-            <div className="p-3 w-full rounded-xl border shadow mb-3 bg-card">
-                <h1 className="font-bold pb-2 text-center">{dictionary.fullName}</h1>
-
-                <div className="flex items-center space-x-2">
-                    <Input type="text" placeholder={dictionary.whatDoYouSearch} className="" defaultValue={initialValue} />
-                    <Button type="submit" className="">{dictionary.search}</Button>
-                </div>
-            </div>
+            <SearchPanel initialValue={initialValue} />
             <SearchPanelMenu />
         </div>);
 }
 
-export default SearchPanel;
+export default ActivityPanel;

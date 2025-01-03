@@ -1,7 +1,7 @@
 'use client'
 
 import Article from "@/components/main/article";
-import SearchPanel from "@/components/main/searchPanel";
+import SearchPanel from "@/components/main/activityPanel";
 import { useParams } from 'next/navigation'
 
 
@@ -9,7 +9,7 @@ const articleTitle = '你好'
 const articlePronun = 'nǐ hǎo'
 const articleMd = `
 
-1. *наз.* прывітанне
+1. [green]*наз.*[/green] прывітанне
 
 1. *дз.* вітаю
 
