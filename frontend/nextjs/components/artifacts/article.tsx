@@ -7,14 +7,14 @@ import { Pencil } from 'lucide-react';
 interface IArticle {
     title: string;
     pronunciation?: string;
-    mdText: string
+    body: string
 }
 
 
-const Article = function ({ title, pronunciation = '', mdText }: IArticle) {
+const Article = function ({ title, pronunciation = '', body }: IArticle) {
     const processedContent = remark()
         .use(html)
-        .processSync(mdText);
+        .processSync(body);
 
     const contentHtml = processedContent.toString()
         .replaceAll('[green]', '<span style="color: green">')
@@ -38,3 +38,4 @@ const Article = function ({ title, pronunciation = '', mdText }: IArticle) {
 }
 
 export default Article;
+export type { IArticle };

@@ -12,6 +12,7 @@ python-dotenv = "*"
 a2wsgi = "*"
 channels = "*"
 django-nextjs = "*"
+nh3 = "*"
 
 [dev-packages]
 uvicorn = "*"

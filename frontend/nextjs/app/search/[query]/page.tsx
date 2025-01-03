@@ -1,25 +1,23 @@
 'use client'
 
-import Article from "@/components/main/article";
+import Artiseq from "@/components/artifacts/artiseq";
 import SearchPanel from "@/components/main/activityPanel";
-import { useParams } from 'next/navigation'
-
-
-const articleTitle = '你好'
-const articlePronun = 'nǐ hǎo'
-const articleMd = `
-
-1. [green]*наз.*[/green] прывітанне
-
-1. *дз.* вітаю
-
-1. *праст.* прывет
-
-`.trim();
+import { useParams, useRouter } from 'next/navigation'
 
 
 export default function Home() {
   const { query } = useParams()
+  const router = useRouter()
+
+  if (!query) {
+    router.push("/")
+    return
+  }
+
+  if ((query as string).trim() == '') {
+    router.push("/")
+    return
+  }
 
   return (
     <>
@@ -30,12 +28,8 @@ export default function Home() {
       </header>
 
       <main className="mb-5">
-        <div className="flex flex-col justify-center space-y-5 items-center">
-          <Article title={articleTitle} pronunciation={articlePronun} mdText={articleMd}></Article>
-          <Article title={articleTitle} pronunciation={articlePronun} mdText={articleMd}></Article>
-          <Article title={articleTitle} pronunciation={articlePronun} mdText={articleMd}></Article>
-        </div>
-      </main>
+        <Artiseq query={query as string} />
+      </main >
     </>
   );
 }

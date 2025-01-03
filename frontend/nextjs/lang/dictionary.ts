@@ -13,6 +13,8 @@ interface IDictionary {
     additionalUtils: string;
     signIn: string;
     aboutUs: string;
+    nothingFound: string;
+    nothingFoundAdvice: string;
 }
 
 const dictionaries: { [key: string]: IDictionary } = {
