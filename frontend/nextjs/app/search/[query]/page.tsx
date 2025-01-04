@@ -6,7 +6,7 @@ import { useParams, useRouter } from 'next/navigation'
 
 
 export default function Home() {
-  const { query } = useParams()
+  let { query } = useParams()
   const router = useRouter()
 
   if (!query) {
@@ -19,16 +19,18 @@ export default function Home() {
     return
   }
 
+  query = decodeURIComponent(query as string)
+
   return (
     <>
       <header className="mb-5">
         <div className="flex justify-center">
-          <SearchPanel initialValue={decodeURIComponent(query as string)} />
+          <SearchPanel initialValue={query} />
         </div>
       </header>
 
       <main className="mb-5">
-        <Artiseq query={query as string} />
+        <Artiseq query={query} />
       </main >
     </>
   );

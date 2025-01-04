@@ -21,7 +21,7 @@ const Translators = ({ className = '', query }: ITranslators) => {
         lang_to = 'be'
     }
 
-    return (<div className={'grid gap-3 md:grid-cols-3 w-full max-w-2xl' + ' ' + className}>
+    return (<div className={'grid gap-3 md:grid-cols-3 w-full max-w-2xl [&_button]:shadow' + ' ' + className}>
         <Button variant="outline" onClick={() => {
             router.push(`https://translate.yandex.com/?source_lang=${lang_from}&target_lang=${lang_to}&text=${query}`)
             return
