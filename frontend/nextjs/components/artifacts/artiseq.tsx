@@ -3,6 +3,7 @@ import Article, { IArticle } from "./article";
 import React from "react";
 import { Card, CardDescription, CardHeader, CardTitle } from "../ui/card";
 import { getDictionary } from "@/lang/dictionary";
+import Translators from "./translators";
 
 interface IArtiseq {
     query: string;
@@ -36,6 +37,8 @@ const Artiseq = ({ query }: IArtiseq) => {
                     <CardDescription>{dictionary.nothingFoundAdvice}</CardDescription>
                 </CardHeader>
             </Card>}
+
+            <Translators query={query} />
         </div>)
 }
 
