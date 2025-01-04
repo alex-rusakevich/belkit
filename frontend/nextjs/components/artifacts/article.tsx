@@ -20,7 +20,7 @@ const Article = function ({ id, title, pronunciation = '', body }: IArticle) {
 
     const contentHtml = processedContent.toString()
         .replaceAll('[green]', '<span style="color: green">')
-        .replaceAll(/\[gr[ae]y\]/g, '<span style="color: gray">')
+        .replaceAll(/\[gray\]/g, '<span style="color: gray">')
         .replaceAll(/\[\/green\]|\[\/gr[ae]y\]/g, '</span>');
 
     return (<Card className='w-full max-w-2xl'>

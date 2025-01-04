@@ -10,6 +10,7 @@ from dictionary.models import Article
 class ArticleAdmin(admin.ModelAdmin):
     class Media:
         css = {"all": ("admin/css/martor-fix.css",)}
+        js = ("admin/js/martor-custom-buttons.js",)
 
     formfield_overrides = {
         models.TextField: {"widget": AdminMartorWidget},

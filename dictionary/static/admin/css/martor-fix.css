@@ -6,3 +6,11 @@ div.section-martor div.martor-preview {
     color: black;
     padding-top: 20px !important;
 }
+
+.text-green {
+    color: green;
+}
+
+.text-gray {
+    color: gray;
+}
