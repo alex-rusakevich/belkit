@@ -20,6 +20,7 @@ interface IDictionary {
     yourText: string;
     addExample: string;
     addArticle: string;
+    youAlsoCanAdd: string;
     utils: {
         pinyinNumToTone: string;
         pinyinNumToToneDesc: string;

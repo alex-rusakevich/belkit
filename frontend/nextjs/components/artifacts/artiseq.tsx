@@ -24,20 +24,25 @@ const Artiseq = ({ query }: IArtiseq) => {
 
     return (
         <div className="flex flex-col justify-center space-y-5 items-center">
-            {isPending && <Skeleton className="rounded-xl h-[200px] w-full max-w-2xl" />}
-            {data && (data as IArticle[])?.length > 0 ? (data as IArticle[]).map(article => (
-                <React.Fragment key="">
-                    <Article id={article.id} title={article.title}
-                        pronunciation={article.pronunciation} body={article.body} />
-                </React.Fragment>
-            )) : <Card className='w-full max-w-2xl'>
-                <CardHeader>
-                    <CardTitle className="flex align-middle">
-                        <span>{dictionary.nothingFound} 😔</span>
-                    </CardTitle>
-                    <CardDescription>{dictionary.nothingFoundAdvice}</CardDescription>
-                </CardHeader>
-            </Card>}
+            {isPending ? (<Skeleton className="rounded-xl h-[200px] w-full max-w-2xl" />) : (
+                data && (data as IArticle[])?.length > 0 ? (data as IArticle[]).map(article => (
+                    <React.Fragment key="">
+                        <Article id={article.id} title={article.title}
+                            pronunciation={article.pronunciation} body={article.body} />
+                    </React.Fragment>
+                )) : <Card className='w-full max-w-2xl'>
+                    <CardHeader>
+                        <CardTitle className="flex align-middle">
+                            <span>{dictionary.nothingFound} 😔</span>
+                        </CardTitle>
+
+                        <CardDescription className="flex flex-col gap-1">
+                            <p>{dictionary.nothingFoundAdvice}</p>
+                            <p>{dictionary.youAlsoCanAdd}</p>
+                        </CardDescription>
+                    </CardHeader>
+                </Card>
+            )}
 
             <Translators query={query} />
         </div>)
