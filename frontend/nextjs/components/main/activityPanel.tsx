@@ -82,7 +82,7 @@ const SearchPanelMenu = () => {
                         <span>{dictionary.addPage}</span>
                     </NavigationMenuTrigger>
                     <NavigationMenuContent>
-                        <ul className="grid overflow-y-auto gap-3 p-4 w-[400px] max-h-[200px]">
+                        <ul className="grid overflow-y-auto w-[300px] max-h-[200px]">
                             <ListItem
                                 title={dictionary.addArticle}
                                 href="/admin/dictionary/article/add/"
@@ -112,7 +112,7 @@ const SearchPanelMenu = () => {
                         <span>{dictionary.additionalUtils}</span>
                     </NavigationMenuTrigger>
                     <NavigationMenuContent>
-                        <ul className="grid overflow-y-auto gap-3 p-4 w-[400px] max-h-[200px]">
+                        <ul className="grid overflow-y-auto w-[300px] max-h-[200px]">
                             {components.map((component) => (
                                 <ListItem
                                     key={component.title}
