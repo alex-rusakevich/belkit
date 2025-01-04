@@ -79,6 +79,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
+    "martor",
     "dictionary",
     "frontend",
     "utils",
@@ -170,7 +171,10 @@ if DEBUG:
     STATIC_ROOT = os.path.join(BASE_DIR, "static")
     MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
-STATICFILES_DIRS = (BASE_DIR / os.path.join("frontend", "nextjs", "static"),)
+STATICFILES_DIRS = (
+    BASE_DIR / os.path.join("frontend", "nextjs", "static"),
+    BASE_DIR / os.path.join("dictionary", "static"),
+)
 # endregion
 
 
@@ -182,3 +186,9 @@ REST_FRAMEWORK = {
         "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
     ]
 }
+
+# region Configure markdown
+MARTOR_THEME = "semantic"
+
+MARTOR_TOOLBAR_BUTTONS = ["bold", "italic", "link", "help"]
+# endregion

@@ -1,0 +1,8 @@
+div.section-martor div.ui.bottom.attached.tab.segment.active {
+    padding: 0;
+}
+
+div.section-martor div.martor-preview {
+    color: black;
+    padding-top: 20px !important;
+}

@@ -85,7 +85,7 @@ const SearchPanelMenu = () => {
                         <ul className="grid overflow-y-auto gap-3 p-4 w-[400px] max-h-[200px]">
                             <ListItem
                                 title={dictionary.addArticle}
-                                href="/add/article/"
+                                href="/admin/dictionary/article/add/"
                             >
                             </ListItem>
                             <ListItem

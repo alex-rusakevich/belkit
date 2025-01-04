@@ -25,7 +25,7 @@ const Article = function ({ id, title, pronunciation = '', body }: IArticle) {
 
     return (<Card className='w-full max-w-2xl'>
 
-        <Link className='float-right m-6' href={`/edit/${id}/`}>
+        <Link className='float-right m-6' href={`/admin/dictionary/article/${id}/change/`}>
             <Pencil width={24} height={24} />
         </Link>
 
