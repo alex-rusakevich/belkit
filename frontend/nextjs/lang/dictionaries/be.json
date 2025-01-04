@@ -13,6 +13,11 @@
     "aboutUs": "Пра нас",
     "nothingFound": "Нічога не знойдзена",
     "nothingFoundAdvice": "Паспрабуйце змяніць умовы пошуку або паспрабаваць іншыя варыянты",
+    "yourText": "Ваш тэкст",
+    "yourResult": "Ваш рэзультат",
+    "transform": "Ператыварыць",
+    "addArticle": "Артыкул",
+    "addExample": "Прыклад",
     "utils": {
         "pinyinNumToTone": "З піньіня з нумарам у піньінь з тонам",
         "pinyinNumToToneDesc": "Напрыклад, ператыварыць \"ni3\" у \"nǐ\""

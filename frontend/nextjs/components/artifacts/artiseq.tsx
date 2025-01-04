@@ -15,9 +15,9 @@ const Artiseq = ({ query }: IArtiseq) => {
     const dictionary = getDictionary();
 
     const { isPending, data } = useQuery({
-        queryKey: ['repoData'],
+        queryKey: [],
         queryFn: () =>
-            fetch(`/api/dictionary/articles/?query=${query}`).then((res) =>
+            fetch(`/api/dictionary/articles/?query=${encodeURIComponent(query)}`).then((res) =>
                 res.json(),
             ),
     })
@@ -27,7 +27,8 @@ const Artiseq = ({ query }: IArtiseq) => {
             {isPending && <Skeleton className="rounded-xl h-[200px] w-full max-w-2xl" />}
             {data && (data as IArticle[])?.length > 0 ? (data as IArticle[]).map(article => (
                 <React.Fragment key="">
-                    <Article title={article.title} pronunciation={article.pronunciation} body={article.body} />
+                    <Article id={article.id} title={article.title}
+                        pronunciation={article.pronunciation} body={article.body} />
                 </React.Fragment>
             )) : <Card className='w-full max-w-2xl'>
                 <CardHeader>

@@ -2,16 +2,18 @@ import { remark } from 'remark';
 import html from 'remark-html';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import { Pencil } from 'lucide-react';
+import Link from 'next/link';
 
 
 interface IArticle {
+    id: number;
     title: string;
     pronunciation?: string;
     body: string
 }
 
 
-const Article = function ({ title, pronunciation = '', body }: IArticle) {
+const Article = function ({ id, title, pronunciation = '', body }: IArticle) {
     const processedContent = remark()
         .use(html)
         .processSync(body);
@@ -23,9 +25,9 @@ const Article = function ({ title, pronunciation = '', body }: IArticle) {
 
     return (<Card className='w-full max-w-2xl'>
 
-        <button className='float-right m-6'>
-            <Pencil />
-        </button>
+        <Link className='float-right m-6' href={`/edit/${id}/`}>
+            <Pencil width={24} height={24} />
+        </Link>
 
         <CardHeader>
             <CardTitle>{title}</CardTitle>

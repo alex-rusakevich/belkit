@@ -13,6 +13,7 @@ a2wsgi = "*"
 channels = "*"
 django-nextjs = "*"
 nh3 = "*"
+pypinyin = "*"
 
 [dev-packages]
 uvicorn = "*"

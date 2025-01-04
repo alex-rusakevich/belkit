@@ -77,16 +77,28 @@ const SearchPanelMenu = () => {
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                    <Link href="#" legacyBehavior passHref>
-                        <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                            <CirclePlus />
-                            <span>{dictionary.addPage}</span>
-                        </NavigationMenuLink>
-                    </Link>
+                    <NavigationMenuTrigger>
+                        <CirclePlus />
+                        <span>{dictionary.addPage}</span>
+                    </NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                        <ul className="grid overflow-y-auto gap-3 p-4 w-[400px] max-h-[200px]">
+                            <ListItem
+                                title={dictionary.addArticle}
+                                href="/add/article/"
+                            >
+                            </ListItem>
+                            <ListItem
+                                title={dictionary.addExample}
+                                href="/add/example/"
+                            >
+                            </ListItem>
+                        </ul>
+                    </NavigationMenuContent>
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                    <Link href="#" legacyBehavior passHref>
+                    <Link href="/stats/" legacyBehavior passHref>
                         <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                             <ChartColumnIncreasing />
                             <span>{dictionary.stats}</span>
@@ -100,7 +112,7 @@ const SearchPanelMenu = () => {
                         <span>{dictionary.additionalUtils}</span>
                     </NavigationMenuTrigger>
                     <NavigationMenuContent>
-                        <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] h-[200px] overflow-y-auto">
+                        <ul className="grid overflow-y-auto gap-3 p-4 w-[400px] max-h-[200px]">
                             {components.map((component) => (
                                 <ListItem
                                     key={component.title}
@@ -115,7 +127,7 @@ const SearchPanelMenu = () => {
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                    <Link href="#" legacyBehavior passHref>
+                    <Link href="/info/" legacyBehavior passHref>
                         <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                             <Info />
                             <span>{dictionary.aboutUs}</span>
@@ -138,21 +150,20 @@ const SearchPanel = ({ initialValue = "" }: ISearchPanel) => {
     return (<div className="p-3 w-full rounded-xl border shadow mb-3 bg-card">
         <h1 className="font-bold pb-2 text-center">{dictionary.fullName}</h1>
 
-        <div className="flex items-center space-x-2">
+        <form className="flex items-center space-x-2" onSubmit={() => {
+            const query = searchQuery.trim()
+
+            if (query == '') {
+                router.push('/')
+                return
+            }
+
+            router.push(`/search/${query}/`)
+        }}>
             <Input type="text" placeholder={dictionary.whatDoYouSearch}
                 className="" value={searchQuery} onChange={e => setSearchQuery(e.target.value)} />
-            <Button type="submit" className=""
-                onClick={() => {
-                    const query = searchQuery.trim()
-
-                    if (query == '') {
-                        router.push('/')
-                        return
-                    }
-
-                    router.push(`/search/${query}/`)
-                }}>{dictionary.search}</Button>
-        </div>
+            <Button type="submit" className="">{dictionary.search}</Button>
+        </form>
     </div>)
 }
 

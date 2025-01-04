@@ -15,6 +15,11 @@ interface IDictionary {
     aboutUs: string;
     nothingFound: string;
     nothingFoundAdvice: string;
+    yourResult: string;
+    transform: string;
+    yourText: string;
+    addExample: string;
+    addArticle: string;
     utils: {
         pinyinNumToTone: string;
         pinyinNumToToneDesc: string;
