@@ -1,7 +1,6 @@
 import SearchPanel from "@/components/main/activityPanel";
 
 
-
 export default function Home() {
   return (
     <>

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { getDictionary } from "@/lang/dictionary";
+import QueryClientContextProvider from "./queryprovider";
+
 
 export const metadata: Metadata = {
   title: getDictionary().title,
@@ -20,7 +22,9 @@ export default function RootLayout({
       <body
         className={`antialiased`}
       >
-        {children}
+        <QueryClientContextProvider>
+          {children}
+        </QueryClientContextProvider>
       </body>
     </html>
   );

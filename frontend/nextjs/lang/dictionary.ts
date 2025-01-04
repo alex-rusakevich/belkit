@@ -15,6 +15,10 @@ interface IDictionary {
     aboutUs: string;
     nothingFound: string;
     nothingFoundAdvice: string;
+    utils: {
+        pinyinNumToTone: string;
+        pinyinNumToToneDesc: string;
+    }
 }
 
 const dictionaries: { [key: string]: IDictionary } = {
