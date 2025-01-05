@@ -27,7 +27,7 @@ class ArticleViewSet(viewsets.ModelViewSet):
             user_query = request.GET["query"].strip()
 
             queryset = queryset.filter(
-                Q(title__contains=user_query) | Q(body__contains=user_query)
+                Q(title__icontains=user_query) | Q(body__icontains=user_query)
             )
 
         serializer = ArticleSerializer(queryset, context=serializer_context, many=True)

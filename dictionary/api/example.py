@@ -27,7 +27,7 @@ class ExampleViewSet(viewsets.ModelViewSet):
             user_query = request.GET["query"].strip()
 
             queryset = queryset.filter(
-                Q(body_be__contains=user_query) | Q(body_zh__contains=user_query)
+                Q(body_be__icontains=user_query) | Q(body_zh__icontains=user_query)
             )
 
         serializer = ExampleSerializer(queryset, context=serializer_context, many=True)
