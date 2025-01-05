@@ -30,7 +30,7 @@ const HighlightWord = function ({ id, text, query }: IHighlightWord) {
     return (<>
         {text.split(new RegExp("(" + escapeForRe(query) + ")", "gi")).map((part: string) => {
             number++
-            return (<React.Fragment key={`hl-part-${id}-${number}`}>{part == query ? (<span style={{ color: 'green' }}>{part}</span>) : (<>{part}</>)}</React.Fragment>)
+            return (<React.Fragment key={`hl-part-${id}-${number}`}>{part.toLowerCase() == query.toLowerCase() ? (<span style={{ color: 'green' }}>{part}</span>) : (<>{part}</>)}</React.Fragment>)
         })}
     </>)
 }

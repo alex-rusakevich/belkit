@@ -90,7 +90,7 @@ const SearchPanelMenu = () => {
                             </ListItem>
                             <ListItem
                                 title={dictionary.addExample}
-                                href="/add/example/"
+                                href="/admin/dictionary/example/add/"
                             >
                             </ListItem>
                         </ul>

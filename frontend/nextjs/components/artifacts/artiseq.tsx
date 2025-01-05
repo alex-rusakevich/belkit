@@ -31,46 +31,42 @@ const Artiseq = ({ query }: IArtiseq) => {
             ),
     })
 
+    function isNothingFound() {
+        return !isArticlesPending && (articleData as IArticle[])?.length == 0
+            && !isExamplesPending && (exampleData as IExample[])?.length == 0
+    }
+
     return (
         <div className="flex flex-col justify-center space-y-5 items-center">
             {isArticlesPending ? (<Skeleton className="rounded-xl h-[200px] w-full max-w-2xl" />) : (
-                articleData && (articleData as IArticle[])?.length > 0 ? (articleData as IArticle[]).map(article => (
+                articleData && (articleData as IArticle[])?.length > 0 && (articleData as IArticle[]).map(article => (
                     <React.Fragment key={"article-" + article.id}>
                         <Article id={article.id} title={article.title}
                             pronunciation={article.pronunciation} body={article.body} />
                     </React.Fragment>
-                )) : <Card className='w-full max-w-2xl'>
-                    <CardHeader>
-                        <CardTitle className="flex align-middle">
-                            <span>{dictionary.nothingFound} 😔</span>
-                        </CardTitle>
-
-                        <CardDescription className="flex flex-col gap-1">
-                            <p>{dictionary.nothingFoundAdvice}</p>
-                            <p>{dictionary.youAlsoCanAdd}</p>
-                        </CardDescription>
-                    </CardHeader>
-                </Card>
+                ))
             )}
 
             {isExamplesPending ? (<Skeleton className="rounded-xl h-[200px] w-full max-w-2xl" />) : (
-                exampleData && (exampleData as IExample[])?.length > 0 ? (exampleData as IExample[]).map(example => (
+                exampleData && (exampleData as IExample[])?.length > 0 && (exampleData as IExample[]).map(example => (
                     <React.Fragment key="">
                         <Example id={example.id} body_be={example.body_be} body_zh={example.body_zh} query={decodeURIComponent(query)} />
                     </React.Fragment>
-                )) : <Card className='w-full max-w-2xl'>
-                    <CardHeader>
-                        <CardTitle className="flex align-middle">
-                            <span>{dictionary.nothingFound} 😔</span>
-                        </CardTitle>
-
-                        <CardDescription className="flex flex-col gap-1">
-                            <p>{dictionary.nothingFoundAdvice}</p>
-                            <p>{dictionary.youAlsoCanAdd}</p>
-                        </CardDescription>
-                    </CardHeader>
-                </Card>
+                ))
             )}
+
+            {isNothingFound() && <Card className='w-full max-w-2xl'>
+                <CardHeader>
+                    <CardTitle className="flex align-middle">
+                        <span>{dictionary.nothingFound} 😔</span>
+                    </CardTitle>
+
+                    <CardDescription className="flex flex-col gap-1">
+                        <p>{dictionary.nothingFoundAdvice}</p>
+                        <p>{dictionary.youAlsoCanAdd}</p>
+                    </CardDescription>
+                </CardHeader>
+            </Card>}
 
             <Translators query={query} />
         </div>)
