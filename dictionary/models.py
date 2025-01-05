@@ -20,3 +20,15 @@ class Article(models.Model):
     def save(self, **kwargs):
         self.body = nh3.clean(self.body)
         super().save(**kwargs)
+
+
+class Example(models.Model):
+    class Meta:
+        verbose_name = _("Прыклад")
+        verbose_name_plural = _("Прыклады")
+
+    body_be = models.TextField(verbose_name=_("Змест на беларускай"))
+    body_zh = models.TextField(verbose_name=_("Змест на кітайскай"))
+
+    def __str__(self):
+        return _("<Прыклад #{} '{}...'>").format(self.id, self.body_be[:64])
