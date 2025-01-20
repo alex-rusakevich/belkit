@@ -46,13 +46,39 @@ const Artiseq = ({ query }: IArtiseq) => {
             ),
     })
 
-    function isNothingFound() {
+    // function isNothingFound() {
+    //     return !isArticlesPending && (articleData as IArticle[])?.length == 0
+    //         && !isExamplesPending && (exampleData as IExample[])?.length == 0
+    // }
+
+    function isNoArticle() {
         return !isArticlesPending && (articleData as IArticle[])?.length == 0
-            && !isExamplesPending && (exampleData as IExample[])?.length == 0
     }
 
     return (
         <div className="flex flex-col justify-center space-y-5 items-center [&_h2]:font-bold">
+            {isNoArticle() && <Card className='w-full max-w-2xl'>
+                <CardHeader>
+                    <CardTitle className="flex align-middle">
+                        <span>{dictionary.nothingFound} 😔</span>
+                    </CardTitle>
+
+                    <CardDescription className="flex flex-col gap-1">
+                        {isLemmasPending ? (<Skeleton className="rounded-xl h-[28px] w-full max-w-2xl" />) : (<div className="py-1">
+                            {(lemmaData as ILemmaData).result.map(lemma => lemma.toLowerCase() != query.trim().toLowerCase() && (
+                                <Badge variant="secondary" key={"lemma-" + lemma} className="cursor-pointer" onClick={() => { router.push(`/search/${lemma}/`) }}>
+                                    <Search className="h-[16px] w-[16px] pr-1" />
+                                    <span>{lemma}</span>
+                                </Badge>
+                            ))}
+                        </div>)}
+
+                        <p>{dictionary.nothingFoundAdvice}</p>
+                        <p>{dictionary.youAlsoCanAdd}</p>
+                    </CardDescription>
+                </CardHeader>
+            </Card>}
+
             {isArticlesPending ? (<Skeleton className="rounded-xl h-[200px] w-full max-w-2xl" />) : (
                 articleData && (articleData as IArticle[])?.length > 0 && (
                     <>
@@ -81,28 +107,6 @@ const Artiseq = ({ query }: IArtiseq) => {
                     </>
                 )
             )}
-
-            {isNothingFound() && <Card className='w-full max-w-2xl'>
-                <CardHeader>
-                    <CardTitle className="flex align-middle">
-                        <span>{dictionary.nothingFound} 😔</span>
-                    </CardTitle>
-
-                    <CardDescription className="flex flex-col gap-1">
-                        {isLemmasPending ? (<Skeleton className="rounded-xl h-[28px] w-full max-w-2xl" />) : (<div className="py-1">
-                            {(lemmaData as ILemmaData).result.map(lemma => lemma.toLowerCase() != query.trim().toLowerCase() && (
-                                <Badge variant="secondary" key={"lemma-" + lemma} className="cursor-pointer" onClick={() => { router.push(`/search/${lemma}/`) }}>
-                                    <Search className="h-[16px] w-[16px] pr-1" />
-                                    <span>{lemma}</span>
-                                </Badge>
-                            ))}
-                        </div>)}
-
-                        <p>{dictionary.nothingFoundAdvice}</p>
-                        <p>{dictionary.youAlsoCanAdd}</p>
-                    </CardDescription>
-                </CardHeader>
-            </Card>}
 
             <Translators query={query} />
         </div>)
