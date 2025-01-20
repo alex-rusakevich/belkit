@@ -37,22 +37,34 @@ const Artiseq = ({ query }: IArtiseq) => {
     }
 
     return (
-        <div className="flex flex-col justify-center space-y-5 items-center">
+        <div className="flex flex-col justify-center space-y-5 items-center [&_h2]:font-bold">
             {isArticlesPending ? (<Skeleton className="rounded-xl h-[200px] w-full max-w-2xl" />) : (
-                articleData && (articleData as IArticle[])?.length > 0 && (articleData as IArticle[]).map(article => (
-                    <React.Fragment key={"article-" + article.id}>
-                        <Article id={article.id} title={article.title}
-                            pronunciation={article.pronunciation} body={article.body} />
-                    </React.Fragment>
-                ))
+                articleData && (articleData as IArticle[])?.length > 0 && (
+                    <>
+                        <h2>Артыкулы</h2>
+
+                        {(articleData as IArticle[]).map(article => (
+                            <React.Fragment key={"article-" + article.id}>
+                                <Article id={article.id} title={article.title}
+                                    pronunciation={article.pronunciation} body={article.body} />
+                            </React.Fragment>
+                        ))}
+                    </>
+                )
             )}
 
             {isExamplesPending ? (<Skeleton className="rounded-xl h-[200px] w-full max-w-2xl" />) : (
-                exampleData && (exampleData as IExample[])?.length > 0 && (exampleData as IExample[]).map(example => (
-                    <React.Fragment key="">
-                        <Example id={example.id} body_be={example.body_be} body_zh={example.body_zh} query={decodeURIComponent(query)} />
-                    </React.Fragment>
-                ))
+                exampleData && (exampleData as IExample[])?.length > 0 && (
+                    <>
+                        <h2>Прыклады</h2>
+
+                        {(exampleData as IExample[]).map(example => (
+                            <React.Fragment key="">
+                                <Example id={example.id} body_be={example.body_be} body_zh={example.body_zh} query={decodeURIComponent(query)} />
+                            </React.Fragment>
+                        ))}
+                    </>
+                )
             )}
 
             {isNothingFound() && <Card className='w-full max-w-2xl'>

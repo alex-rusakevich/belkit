@@ -25,3 +25,4 @@ python_version = "3.12"
 [scripts]
 pydev = "python -m uvicorn belkit.asgi:application --reload"
 nextdev = "cd frontend/nextjs && npm run dev"
+nextprod = "cd frontend/nextjs && npm run start"
