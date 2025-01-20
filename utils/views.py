@@ -2,7 +2,8 @@ import re
 from logging import getLogger
 from typing import List
 
-from django.http import HttpResponseBadRequest, JsonResponse
+import requests
+from django.http import HttpResponse, HttpResponseBadRequest, JsonResponse
 from pypinyin.contrib.tone_convert import to_tone
 
 logger = getLogger(__name__)
@@ -30,3 +31,27 @@ def pinyin_num_to_tone(request):
             result += to_tone(token)
 
     return JsonResponse({"value": result})
+
+
+def get_lemmas(request):
+    req = requests.get(
+        "http://localhost:8093/lemmas", params={"word": request.GET["word"]}
+    )
+
+    return HttpResponse(
+        content=req.content,
+        status=req.status_code,
+        content_type=req.headers["Content-Type"],
+    )
+
+
+def get_lemma(request):
+    req = requests.get(
+        "http://localhost:8093/lemma", params={"word": request.GET["word"]}
+    )
+
+    return HttpResponse(
+        content=req.content,
+        status=req.status_code,
+        content_type=req.headers["Content-Type"],
+    )

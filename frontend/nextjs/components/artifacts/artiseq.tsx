@@ -1,4 +1,3 @@
-
 import Article, { IArticle } from "./article";
 import React from "react";
 import { Card, CardDescription, CardHeader, CardTitle } from "../ui/card";
@@ -7,13 +6,21 @@ import Translators from "./translators";
 import { useQuery } from "@tanstack/react-query";
 import { Skeleton } from "@/components/ui/skeleton"
 import Example, { IExample } from "./example";
+import { Badge } from "../ui/badge";
+import { useRouter } from 'next/navigation'
+import { Search } from "lucide-react";
 
 interface IArtiseq {
     query: string;
 }
 
+interface ILemmaData {
+    result: string[];
+}
+
 const Artiseq = ({ query }: IArtiseq) => {
     const dictionary = getDictionary();
+    const router = useRouter();
 
     const { isPending: isArticlesPending, data: articleData } = useQuery({
         queryKey: ['articles', query],
@@ -27,6 +34,14 @@ const Artiseq = ({ query }: IArtiseq) => {
         queryKey: ['examples', query],
         queryFn: () =>
             fetch(`/api/dictionary/examples/?query=${encodeURIComponent(query)}`).then((res) =>
+                res.json(),
+            ),
+    })
+
+    const { isPending: isLemmasPending, data: lemmaData } = useQuery({
+        queryKey: ['word', query],
+        queryFn: () =>
+            fetch(`/api/utils/lemmatizer/lemmas?word=${encodeURIComponent(query)}`).then((res) =>
                 res.json(),
             ),
     })
@@ -59,7 +74,7 @@ const Artiseq = ({ query }: IArtiseq) => {
                         <h2>Прыклады</h2>
 
                         {(exampleData as IExample[]).map(example => (
-                            <React.Fragment key="">
+                            <React.Fragment key={"example-" + example.id}>
                                 <Example id={example.id} body_be={example.body_be} body_zh={example.body_zh} query={decodeURIComponent(query)} />
                             </React.Fragment>
                         ))}
@@ -74,6 +89,15 @@ const Artiseq = ({ query }: IArtiseq) => {
                     </CardTitle>
 
                     <CardDescription className="flex flex-col gap-1">
+                        {isLemmasPending ? (<Skeleton className="rounded-xl h-[28px] w-full max-w-2xl" />) : (<div className="py-1">
+                            {(lemmaData as ILemmaData).result.map(lemma => lemma.toLowerCase() != query.trim().toLowerCase() && (
+                                <Badge variant="secondary" key={"lemma-" + lemma} className="cursor-pointer" onClick={() => { router.push(`/search/${lemma}/`) }}>
+                                    <Search className="h-[16px] w-[16px] pr-1" />
+                                    <span>{lemma}</span>
+                                </Badge>
+                            ))}
+                        </div>)}
+
                         <p>{dictionary.nothingFoundAdvice}</p>
                         <p>{dictionary.youAlsoCanAdd}</p>
                     </CardDescription>

@@ -15,6 +15,8 @@ django-nextjs = "*"
 nh3 = "*"
 pypinyin = "*"
 martor = "*"
+lemmatizer-be = "*"
+requests = "*"
 
 [dev-packages]
 uvicorn = "*"
