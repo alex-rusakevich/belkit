@@ -20,7 +20,7 @@ const Article = function ({ id, title, pronunciation = '', body }: IArticle) {
 
     const contentHtml = processedContent.toString()
         .replaceAll(/\[label\]/g, '<span class="article-label">')
-        .replaceAll(/\[example\]/g, '<span style="article-example">')
+        .replaceAll(/\[example\]/g, '<span class="article-example">')
         .replaceAll(/\[\/label\]|\[\/example\]/g, '</span>');
 
     return (<Card className='w-full max-w-2xl'>
@@ -34,7 +34,13 @@ const Article = function ({ id, title, pronunciation = '', body }: IArticle) {
             {pronunciation ? <CardDescription>{pronunciation}</CardDescription> : null}
         </CardHeader>
         <CardContent>
-            <div className='[&_ol]:list-decimal [&_ol]:pl-5' dangerouslySetInnerHTML={{ __html: contentHtml }} />
+            <div className={`
+                [&_ol]:list-decimal
+                [&_ol]:pl-5
+                [&_span.article-example]:text-gray-600
+                [&_span.article-label]:text-green-600
+                [&_span.article-label]:italic
+                `} dangerouslySetInnerHTML={{ __html: contentHtml }} />
         </CardContent>
     </Card>)
 }
