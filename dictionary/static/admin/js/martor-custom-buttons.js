@@ -1,6 +1,6 @@
 const buttons = [
-    ["Зялёны", "[green]", "[/green]"],
-    ["Серы", "[gray]", "[/grey]"],
+    ["Метка", "[label]", "[/label]"],
+    ["Прыклад", "[example]", "[/example]"],
 ];
 
 window.addEventListener('load', function () {

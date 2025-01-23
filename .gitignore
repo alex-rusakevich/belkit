@@ -15,6 +15,7 @@ downloads/
 eggs/
 .eggs/
 lib/
+!frontend/nextjs/lib
 lib64/
 parts/
 sdist/

@@ -7,10 +7,10 @@ div.section-martor div.martor-preview {
     padding-top: 20px !important;
 }
 
-.text-green {
+span.text-label {
     color: green;
 }
 
-.text-gray {
+span.text-example {
     color: gray;
 }

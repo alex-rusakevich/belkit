@@ -43,8 +43,8 @@ const Example = function ({ id, body_be, body_zh, query }: IExample) {
         </Link>
 
         <CardContent className='pt-6 pr-0 flex flex-col gap-2'>
-            <p><HighlightWord id={id} text={body_be} query={query}></HighlightWord></p>
             <p><HighlightWord id={id} text={body_zh} query={query}></HighlightWord></p>
+            <p><HighlightWord id={id} text={body_be} query={query}></HighlightWord></p>
         </CardContent>
     </Card>)
 }

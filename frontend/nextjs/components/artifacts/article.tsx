@@ -19,9 +19,9 @@ const Article = function ({ id, title, pronunciation = '', body }: IArticle) {
         .processSync(body);
 
     const contentHtml = processedContent.toString()
-        .replaceAll('[green]', '<span style="color: green">')
-        .replaceAll(/\[gray\]/g, '<span style="color: gray">')
-        .replaceAll(/\[\/green\]|\[\/gr[ae]y\]/g, '</span>');
+        .replaceAll(/\[label\]/g, '<span class="article-label">')
+        .replaceAll(/\[example\]/g, '<span style="article-example">')
+        .replaceAll(/\[\/label\]|\[\/example\]/g, '</span>');
 
     return (<Card className='w-full max-w-2xl'>
 

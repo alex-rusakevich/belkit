@@ -4,16 +4,7 @@ import xml.etree.ElementTree as etree
 import markdown
 from markdown.inlinepatterns import Pattern
 
-COLORS = ["green", "gray"]
-
-
-def gen_css():
-    result = ""
-
-    for color in COLORS:
-        result += f".text-{color} {{ color: {color}; }}\n\n"
-
-    return result
+MD_TAGS = ["label", "example"]
 
 
 class SimpleTagAttributesPattern(Pattern):
@@ -36,19 +27,19 @@ class SimpleTagAttributesPattern(Pattern):
 
 
 class ColorSquaresExtension(markdown.extensions.Extension):
-    """Adds [green] and [gray] support to Markdown"""
+    """Adds [label] and [example] support to Markdown"""
 
     def extendMarkdown(self, md: markdown.core.Markdown, *args):
         priority = 20
 
-        for color in COLORS:
+        for md_tag in MD_TAGS:
             tag = "span"
-            COLOR_RE = r"(\[{0}\])(.+?)(\[\/{0}\])".format(color)
+            COLOR_RE = r"(\[{0}\])(.+?)(\[\/{0}\])".format(md_tag)
 
             pattern = SimpleTagAttributesPattern(
-                COLOR_RE, tag, {"class": f"text-{color}"}
+                COLOR_RE, tag, {"class": f"text-{md_tag}"}
             )
-            md.inlinePatterns.register(pattern, "color-squares-" + color, priority)
+            md.inlinePatterns.register(pattern, "color-squares-" + md_tag, priority)
             priority += 1
 
 
@@ -58,5 +49,5 @@ def makeExtension(*args, **kwargs):
 
 if __name__ == "__main__":
     md = markdown.Markdown(extensions=[ColorSquaresExtension()])
-    result = md.convert("[green]This is test[/green]")
+    result = md.convert("[label]This is test[/label]")
     print(result)
