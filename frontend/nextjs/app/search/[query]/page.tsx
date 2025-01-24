@@ -6,8 +6,8 @@ type Props = {
 }
 
 
-export function generateMetadata({ params }: Props) {
-  const { query } = params;
+export async function generateMetadata({ params }: Props) {
+  const { query } = await params;
   const word = decodeURIComponent(query);
 
   return {

@@ -4,7 +4,6 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "==4.1"
 pymysql = "*"
 dj-database-url = "*"
 djangorestframework = "*"
@@ -15,8 +14,9 @@ django-nextjs = "*"
 nh3 = "*"
 pypinyin = "*"
 martor = "*"
-lemmatizer-be = "*"
 requests = "*"
+django = "==4.2"
+lemmatizer-be = "*"
 
 [dev-packages]
 uvicorn = "*"

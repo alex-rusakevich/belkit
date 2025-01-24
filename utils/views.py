@@ -2,11 +2,12 @@ import re
 from logging import getLogger
 from typing import List
 
-import requests
-from django.http import HttpResponse, HttpResponseBadRequest, JsonResponse
+from django.http import HttpResponseBadRequest, JsonResponse
+from lemmatizer_be import BnkorpusLemmatizer
 from pypinyin.contrib.tone_convert import to_tone
 
 logger = getLogger(__name__)
+lm = BnkorpusLemmatizer()
 
 
 def tokenize(text: str) -> List[str]:
@@ -34,24 +35,8 @@ def pinyin_num_to_tone(request):
 
 
 def get_lemmas(request):
-    req = requests.get(
-        "http://localhost:8093/lemmas", params={"word": request.GET["word"]}
-    )
-
-    return HttpResponse(
-        content=req.content,
-        status=req.status_code,
-        content_type=req.headers["Content-Type"],
-    )
+    return JsonResponse({"result": lm.lemmas(request.GET["word"])})
 
 
 def get_lemma(request):
-    req = requests.get(
-        "http://localhost:8093/lemma", params={"word": request.GET["word"]}
-    )
-
-    return HttpResponse(
-        content=req.content,
-        status=req.status_code,
-        content_type=req.headers["Content-Type"],
-    )
+    return JsonResponse({"result": lm.lemmatize(request.GET["word"])})
