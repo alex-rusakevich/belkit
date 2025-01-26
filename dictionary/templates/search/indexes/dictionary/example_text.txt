@@ -1,0 +1,2 @@
+{{ object.body_zh }}
+{{ object.body_be }}

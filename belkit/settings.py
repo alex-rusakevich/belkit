@@ -79,6 +79,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "cachalot",
+    "haystack",
     "rest_framework",
     "martor",
     "dictionary",
@@ -149,6 +150,14 @@ if DEBUG:
     CACHES["default"] = {
         "BACKEND": "django.core.cache.backends.dummy.DummyCache",
     }
+
+
+HAYSTACK_CONNECTIONS = {
+    "default": {
+        "ENGINE": "haystack.backends.whoosh_backend.WhooshEngine",
+        "PATH": os.path.join(BASE_DIR, "whoosh_index"),
+    },
+}
 
 
 AUTH_PASSWORD_VALIDATORS = [

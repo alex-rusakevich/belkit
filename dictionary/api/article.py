@@ -1,4 +1,3 @@
-from django.db.models import Q
 from rest_framework import serializers, viewsets
 from rest_framework.response import Response
 
@@ -25,10 +24,7 @@ class ArticleViewSet(viewsets.ModelViewSet):
 
         if "query" in request.GET:
             user_query = request.GET["query"].strip()
-
-            queryset = queryset.filter(
-                Q(title__icontains=user_query) | Q(body__icontains=user_query)
-            )
+            queryset = queryset.filter(title__iexact=user_query)
 
         serializer = ArticleSerializer(queryset, context=serializer_context, many=True)
         return Response(serializer.data)

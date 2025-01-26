@@ -19,6 +19,9 @@ django = "==4.2"
 lemmatizer-be = "*"
 django-cachalot = "*"
 django-redis = "*"
+django-haystack = "*"
+whoosh = "*"
+nltk = "*"
 
 [dev-packages]
 uvicorn = "*"
