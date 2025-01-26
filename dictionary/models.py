@@ -4,6 +4,10 @@ from django.utils.translation import gettext_lazy as _
 
 
 class Article(models.Model):
+    class Direction(models.TextChoices):
+        BY_CN = "BC", _("Бел-кіт")
+        CN_BY = "CB", _("Кіт-бел")
+
     class Meta:
         verbose_name = _("Артыкул")
         verbose_name_plural = _("Артыкулы")
@@ -13,6 +17,12 @@ class Article(models.Model):
         max_length=255, null=True, blank=True, verbose_name=_("Вымаўленне")
     )
     body = models.TextField(verbose_name=_("Змест"))
+    direction = models.CharField(
+        max_length=2,
+        choices=Direction.choices,
+        default=Direction.BY_CN,
+        verbose_name=_("Напрамак перакладу"),
+    )
 
     def __str__(self):
         return _("<Артыкул '{}'>").format(self.title)

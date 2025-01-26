@@ -18,6 +18,7 @@ class ArticleAdmin(admin.ModelAdmin):
 
     model = Article
     list_display = ["id", "title", "pronunciation", "get_body"]
+    list_filter = ["direction"]
     search_fields = ["id", "title", "pronunciation", "body"]
 
     def get_body(self, obj):
