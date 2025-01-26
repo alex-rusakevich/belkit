@@ -78,6 +78,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "cachalot",
     "rest_framework",
     "martor",
     "dictionary",
@@ -131,6 +132,23 @@ DATABASES["default"]["OPTIONS"] = {
     "charset": "utf8mb4",
     "collation": "utf8mb4_general_ci",
 }
+
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        },
+    }
+}
+
+
+if DEBUG:
+    CACHES["default"] = {
+        "BACKEND": "django.core.cache.backends.dummy.DummyCache",
+    }
 
 
 AUTH_PASSWORD_VALIDATORS = [

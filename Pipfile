@@ -17,6 +17,8 @@ martor = "*"
 requests = "*"
 django = "==4.2"
 lemmatizer-be = "*"
+django-cachalot = "*"
+django-redis = "*"
 
 [dev-packages]
 uvicorn = "*"
