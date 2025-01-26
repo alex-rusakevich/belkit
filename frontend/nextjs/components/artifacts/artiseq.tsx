@@ -114,7 +114,7 @@ const Artiseq = ({ query }: IArtiseq) => {
 
                         {(possibleResultsData.examples as IExample[]).map(example => (
                             <React.Fragment key={"example-" + example.id}>
-                                <Example id={example.id} body_be={example.body_be} body_zh={example.body_zh} query={decodeURIComponent(query)} />
+                                <Example id={example.id} body_be={example.body_be} body_zh={example.body_zh} />
                             </React.Fragment>
                         ))}
                     </>
