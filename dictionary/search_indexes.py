@@ -14,15 +14,17 @@ class BnkPrepareIndexText:
     def indexify(word):
         return lemmatizer.lemmatize(word)
 
+    @staticmethod
+    def gen_index_string(text: str) -> str:
+        words = nltk.word_tokenize(text)
+        return " ".join(BnkPrepareIndexText.indexify(word) for word in words)
+
     def prepare_text(self, obj):
         obj_name = obj.__class__.__name__.lower()
         text = render_to_string(
             "search/indexes/dictionary/{}_text.txt".format(obj_name), {"object": obj}
         )
-
-        words = nltk.word_tokenize(text)
-        lemmas = " ".join(BnkPrepareIndexText.indexify(word) for word in words)
-        return lemmas
+        return self.gen_index_string(text)
 
 
 class ArticleIndex(indexes.SearchIndex, indexes.Indexable, BnkPrepareIndexText):

@@ -18,9 +18,9 @@ const Example = function ({ id, body_be, body_zh }: IExample) {
             <Pencil width={24} height={24} />
         </Link>
 
-        <CardContent className='pt-6 pr-0 flex flex-col gap-2'>
-            <p>{body_zh}</p>
-            <p>{body_be}</p>
+        <CardContent className='pt-6 pr-0 flex flex-col gap-2 [&_span.query-found]:text-green-600'>
+            <p dangerouslySetInnerHTML={{ __html: body_zh }}></p>
+            <p dangerouslySetInnerHTML={{ __html: body_be }}></p>
         </CardContent>
     </Card>)
 }

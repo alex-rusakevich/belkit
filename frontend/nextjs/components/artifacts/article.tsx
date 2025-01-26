@@ -1,5 +1,5 @@
-import { remark } from 'remark';
-import html from 'remark-html';
+// import { remark } from 'remark';
+// import html from 'remark-html';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import { Pencil } from 'lucide-react';
 import Link from 'next/link';
@@ -14,14 +14,14 @@ interface IArticle {
 
 
 const Article = function ({ id, title, pronunciation = '', body }: IArticle) {
-    const processedContent = remark()
-        .use(html)
-        .processSync(body);
+    // const processedContent = remark()
+    //     .use(html)
+    //     .processSync(body);
 
-    const contentHtml = processedContent.toString()
-        .replaceAll(/\[label\]/g, '<span class="article-label">')
-        .replaceAll(/\[example\]/g, '<span class="article-example">')
-        .replaceAll(/\[\/label\]|\[\/example\]/g, '</span>');
+    // const contentHtml = processedContent.toString()
+    //     .replaceAll(/\[label\]/g, '<span class="article-label">')
+    //     .replaceAll(/\[example\]/g, '<span class="article-example">')
+    //     .replaceAll(/\[\/label\]|\[\/example\]/g, '</span>');
 
     return (<Card className='w-full max-w-2xl'>
 
@@ -30,8 +30,8 @@ const Article = function ({ id, title, pronunciation = '', body }: IArticle) {
         </Link>
 
         <CardHeader>
-            <CardTitle>{title}</CardTitle>
-            {pronunciation ? <CardDescription>{pronunciation}</CardDescription> : null}
+            <CardTitle dangerouslySetInnerHTML={{ __html: title }}></CardTitle>
+            {pronunciation ? <CardDescription dangerouslySetInnerHTML={{ __html: pronunciation }}></CardDescription> : null}
         </CardHeader>
         <CardContent>
             <div className={`
@@ -40,7 +40,8 @@ const Article = function ({ id, title, pronunciation = '', body }: IArticle) {
                 [&_span.article-example]:text-gray-600
                 [&_span.article-label]:text-green-600
                 [&_span.article-label]:italic
-                `} dangerouslySetInnerHTML={{ __html: contentHtml }} />
+                [&_span.query-found]:text-green-600
+                `} dangerouslySetInnerHTML={{ __html: body }} />
         </CardContent>
     </Card>)
 }

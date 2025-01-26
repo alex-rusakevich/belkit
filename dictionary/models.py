@@ -32,6 +32,8 @@ class Article(models.Model):
 
     def save(self, **kwargs):
         self.body = nh3.clean(self.body)
+        self.title = nh3.clean(self.title)
+        self.pronunciation = nh3.clean(self.pronunciation)
         super().save(**kwargs)
 
 
@@ -48,3 +50,8 @@ class Example(models.Model):
 
     def __str__(self):
         return _("<Прыклад #{} '{}...'>").format(self.id, self.body_be[:64])
+
+    def save(self, **kwargs):
+        self.body_be = nh3.clean(self.body_be)
+        self.body_zh = nh3.clean(self.body_zh)
+        super().save(**kwargs)
