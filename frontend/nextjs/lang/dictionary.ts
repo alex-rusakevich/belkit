@@ -21,6 +21,8 @@ interface IDictionary {
     addExample: string;
     addArticle: string;
     youAlsoCanAdd: string;
+    inOtherArticles: string;
+    examples: string;
     utils: {
         pinyinNumToTone: string;
         pinyinNumToToneDesc: string;

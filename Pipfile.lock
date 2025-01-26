@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "89c8104faee2fa247d375849632d02392df47c98fec61a5720a6a5f99fa621b7"
+            "sha256": "d11ed64faaba8185af7ade38ca163e8e5ceebb2fcaf57bd56dac3ebd89cf89c9"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -587,12 +587,12 @@
         },
         "lemmatizer-be": {
             "hashes": [
-                "sha256:8ce31e659cfcb2b38a53485771eccafbf7b139234aa80e59cd71a8b67ace6d63",
-                "sha256:fb44e3cace74b093ba7e3a145b5f9ca6b4414ed36b4ed3f45ebfb981c27e45d9"
+                "sha256:1f440bbdc67391d393e649eed841dbd15e9a88391bccd8bd0822c1daa52a48c0",
+                "sha256:97e6dcb0f5eb6881edb9df4618b6a6ce4a6a47b3760ff731370a942549ea07ed"
             ],
             "index": "pypi",
             "markers": "python_version >= '3.8'",
-            "version": "==1.6.3"
+            "version": "==1.6.4"
         },
         "lxml": {
             "hashes": [

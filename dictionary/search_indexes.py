@@ -6,23 +6,27 @@ from lemmatizer_be import BnkorpusLemmatizer
 from .models import Article, Example
 
 nltk.download("punkt_tab")
+lemmatizer = BnkorpusLemmatizer()
 
 
-class BnkLemmasIndex:
+class BnkPrepareIndexText:
+    @staticmethod
+    def indexify(word):
+        return lemmatizer.lemmatize(word)
+
     def prepare_text(self, obj):
-        lemmatizer = BnkorpusLemmatizer()
         obj_name = obj.__class__.__name__.lower()
         text = render_to_string(
             "search/indexes/dictionary/{}_text.txt".format(obj_name), {"object": obj}
         )
 
         words = nltk.word_tokenize(text)
-        lemmas = " ".join(lemmatizer.lemmatize(word) for word in words)
+        lemmas = " ".join(BnkPrepareIndexText.indexify(word) for word in words)
         return lemmas
 
 
-class ArticleIndex(indexes.SearchIndex, indexes.Indexable, BnkLemmasIndex):
-    text = indexes.EdgeNgramField(document=True, use_template=True)
+class ArticleIndex(indexes.SearchIndex, indexes.Indexable, BnkPrepareIndexText):
+    text = indexes.CharField(document=True, use_template=True)
 
     def get_model(self):
         return Article
@@ -35,8 +39,8 @@ class ArticleIndex(indexes.SearchIndex, indexes.Indexable, BnkLemmasIndex):
         return "updated_at"
 
 
-class ExampleIndex(indexes.SearchIndex, indexes.Indexable, BnkLemmasIndex):
-    text = indexes.EdgeNgramField(document=True, use_template=True)
+class ExampleIndex(indexes.SearchIndex, indexes.Indexable, BnkPrepareIndexText):
+    text = indexes.CharField(document=True, use_template=True)
 
     def get_model(self):
         return Example

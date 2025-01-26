@@ -22,18 +22,18 @@ const Artiseq = ({ query }: IArtiseq) => {
     const dictionary = getDictionary();
     const router = useRouter();
 
-    const { isPending: isArticlesPending, data: articleData } = useQuery({
-        queryKey: ['articles', query],
+    const { isPending: isExactArticlePending, data: articleData } = useQuery({
+        queryKey: ['article', query],
         queryFn: () =>
             fetch(`/api/dictionary/articles/?query=${encodeURIComponent(query)}`).then((res) =>
                 res.json(),
             ),
     })
 
-    const { isPending: isExamplesPending, data: exampleData } = useQuery({
-        queryKey: ['examples', query],
+    const { isPending: arePossibleResultsPending, data: possibleResultsData } = useQuery({
+        queryKey: ['possible', query],
         queryFn: () =>
-            fetch(`/api/dictionary/examples/?query=${encodeURIComponent(query)}`).then((res) =>
+            fetch(`/api/dictionary/fullTextSearch?query=${encodeURIComponent(query)}`).then((res) =>
                 res.json(),
             ),
     })
@@ -52,7 +52,7 @@ const Artiseq = ({ query }: IArtiseq) => {
     // }
 
     function isNoArticle() {
-        return !isArticlesPending && (articleData as IArticle[])?.length == 0
+        return !isExactArticlePending && (articleData as IArticle[])?.length == 0
     }
 
     return (
@@ -79,11 +79,9 @@ const Artiseq = ({ query }: IArtiseq) => {
                 </CardHeader>
             </Card>}
 
-            {isArticlesPending ? (<Skeleton className="rounded-xl h-[200px] w-full max-w-2xl" />) : (
+            {isExactArticlePending ? (<Skeleton className="rounded-xl h-[200px] w-full max-w-2xl" />) : (
                 articleData && (articleData as IArticle[])?.length > 0 && (
                     <>
-                        <h2>Артыкулы</h2>
-
                         {(articleData as IArticle[]).map(article => (
                             <React.Fragment key={"article-" + article.id}>
                                 <Article id={article.id} title={article.title}
@@ -94,12 +92,27 @@ const Artiseq = ({ query }: IArtiseq) => {
                 )
             )}
 
-            {isExamplesPending ? (<Skeleton className="rounded-xl h-[200px] w-full max-w-2xl" />) : (
-                exampleData && (exampleData as IExample[])?.length > 0 && (
+            {arePossibleResultsPending ? (<Skeleton className="rounded-xl h-[200px] w-full max-w-2xl" />) : (
+                possibleResultsData && (possibleResultsData.articles as IArticle[])?.length > 0 && (
                     <>
-                        <h2>Прыклады</h2>
+                        <h2>{dictionary.inOtherArticles}</h2>
 
-                        {(exampleData as IExample[]).map(example => (
+                        {(possibleResultsData.articles as IArticle[]).map(article => (
+                            <React.Fragment key={"article-" + article.id}>
+                                <Article id={article.id} title={article.title}
+                                    pronunciation={article.pronunciation} body={article.body} />
+                            </React.Fragment>
+                        ))}
+                    </>
+                )
+            )}
+
+            {arePossibleResultsPending ? (<Skeleton className="rounded-xl h-[200px] w-full max-w-2xl" />) : (
+                possibleResultsData && (possibleResultsData.examples as IExample[])?.length > 0 && (
+                    <>
+                        <h2>{dictionary.examples}</h2>
+
+                        {(possibleResultsData.examples as IExample[]).map(example => (
                             <React.Fragment key={"example-" + example.id}>
                                 <Example id={example.id} body_be={example.body_be} body_zh={example.body_zh} query={decodeURIComponent(query)} />
                             </React.Fragment>
