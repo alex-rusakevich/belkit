@@ -1,0 +1,46 @@
+[project]
+name = "belkit"
+version = "0.1.0"
+description = "Беларуска-кітайскі анлайн слоўнік"
+authors = [
+    { name = "Alexander Rusakevich", email = "mr.alexander.rusakevich@gmail.com" },
+]
+license = "MIT"
+readme = "README.md"
+requires-python = ">=3.11,<4"
+dependencies = [
+    "pymysql (>=1.1.1,<2.0.0)",
+    "dj-database-url (>=2.3.0,<3.0.0)",
+    "djangorestframework (>=3.15.2,<4.0.0)",
+    "python-dotenv (>=1.0.1,<2.0.0)",
+    "a2wsgi (>=1.10.8,<2.0.0)",
+    "channels (>=4.2.0,<5.0.0)",
+    "django-nextjs (>=3.2.0,<4.0.0)",
+    "nh3 (>=0.2.20,<0.3.0)",
+    "pypinyin (>=0.53.0,<0.54.0)",
+    "martor (>=1.6.45,<2.0.0)",
+    "requests (>=2.32.3,<3.0.0)",
+    "django (==4.2)",
+    "django-cachalot (>=2.7.0,<3.0.0)",
+    "django-redis (>=5.4.0,<6.0.0)",
+    "django-haystack (>=3.3.0,<4.0.0)",
+    "whoosh (>=2.7.4,<3.0.0)",
+    "regex (>=2024.11.6,<2025.0.0)",
+    "jieba (>=0.42.1,<0.43.0)",
+    "lemmatizer-be (>=1.7.2)",
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+uvicorn = "^0.34.0"
+poethepoet = "^0.32.2"
+
+[tool.poe.tasks]
+pydev = "python -m uvicorn belkit.asgi:application --reload"
+nextdev = { cmd = "npm run dev", cwd = "frontend/nextjs" }
+nextprod = { cmd = "npm run start", cwd = "frontend/nextjs" }
+reindex = "python manage.py rebuild_index --noinput -v 2"
