@@ -65,7 +65,7 @@ const Artiseq = ({ query }: IArtiseq) => {
 
                     <CardDescription className="flex flex-col gap-1">
                         {areLemmasPending ? (<Skeleton className="rounded-xl h-[28px] w-full max-w-2xl" />) : (<div className="py-1">
-                            {(lemmaData as ILemmaData).result.map(lemma => lemma.toLowerCase() != query.trim().toLowerCase() && (
+                            {lemmaData && (lemmaData as ILemmaData).result.map(lemma => lemma.toLowerCase() != query.trim().toLowerCase() && (
                                 <Badge variant="secondary" key={"lemma-" + lemma} className="cursor-pointer" onClick={() => { router.push(`/search/${lemma}/`) }}>
                                     <Search className="h-[16px] w-[16px] pr-1" />
                                     <span>{lemma}</span>
