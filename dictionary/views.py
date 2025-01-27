@@ -63,10 +63,6 @@ def search_possible(request):
         highlighted_examples.append(example)
     # endregion
 
-    print("Highlighted")
-    print(highlighted_articles)
-    print(highlighted_examples)
-
     return JsonResponse(
         {
             "articles": ArticleSerializer(highlighted_articles, many=True).data,

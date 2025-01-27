@@ -1,23 +1,36 @@
-import nltk
+import jieba
+import regex as re
 from django.template.loader import render_to_string
 from haystack import indexes
 from lemmatizer_be import BnkorpusLemmatizer
 
 from .models import Article, Example
 
-nltk.download("punkt_tab")
 lemmatizer = BnkorpusLemmatizer()
 
 
 class BnkPrepareIndexText:
+    punct = re.compile(r"\p{P}+")
+    double_space = re.compile(r" {2,}")
+
     @staticmethod
-    def indexify(word):
+    def punct_to_space(text):
+        result = BnkPrepareIndexText.punct.sub(" ", text)
+        result = BnkPrepareIndexText.double_space.sub(" ", result)
+        return result.strip()
+
+    @staticmethod
+    def indexify_word(word):
         return lemmatizer.lemmatize(word)
 
     @staticmethod
     def gen_index_string(text: str) -> str:
-        words = nltk.word_tokenize(text)
-        return " ".join(BnkPrepareIndexText.indexify(word) for word in words)
+        # region Tokenize both Belarusian and Chinese input
+        words = jieba.cut(BnkPrepareIndexText.punct_to_space(text), cut_all=True)
+        words = [w for w in words if w.strip()]
+        # endregion
+
+        return " ".join(BnkPrepareIndexText.indexify_word(word) for word in words)
 
     def prepare_text(self, obj):
         obj_name = obj.__class__.__name__.lower()

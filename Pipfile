@@ -20,8 +20,9 @@ django-cachalot = "*"
 django-redis = "*"
 django-haystack = "*"
 whoosh = "*"
-nltk = "*"
-lemmatizer-be = ">=1.6.4"
+regex = "*"
+jieba = "*"
+lemmatizer-be = "*"
 
 [dev-packages]
 uvicorn = "*"

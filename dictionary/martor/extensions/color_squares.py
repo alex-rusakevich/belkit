@@ -18,8 +18,6 @@ class SimpleTagAttributesPattern(Pattern):
         el = etree.Element(self.tag)
         el.text = m.group(3)
 
-        print(el.text)
-
         for key, value in self.attrs.items():
             el.set(key, value)
 
@@ -50,4 +48,3 @@ def makeExtension(*args, **kwargs):
 if __name__ == "__main__":
     md = markdown.Markdown(extensions=[ColorSquaresExtension()])
     result = md.convert("[label]This is test[/label]")
-    print(result)
