@@ -40,7 +40,5 @@ uvicorn = "^0.34.0"
 poethepoet = "^0.32.2"
 
 [tool.poe.tasks]
-pydev = "python -m uvicorn belkit.asgi:application --reload"
-nextdev = { cmd = "npm run dev", cwd = "frontend/nextjs" }
-nextprod = { cmd = "npm run start", cwd = "frontend/nextjs" }
+dev = "python -m uvicorn belkit.asgi:application --reload"
 reindex = "python manage.py rebuild_index --noinput -v 2"
