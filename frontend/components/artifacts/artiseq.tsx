@@ -33,7 +33,7 @@ const Artiseq = ({ query }: IArtiseq) => {
     const { isPending: arePossibleResultsPending, data: possibleResultsData } = useQuery({
         queryKey: ['possible', query],
         queryFn: () =>
-            fetch(`/api/dictionary/fullTextSearch?query=${encodeURIComponent(query)}`).then((res) =>
+            fetch(`/api/dictionary/fullTextSearch/?query=${encodeURIComponent(query)}`).then((res) =>
                 res.json(),
             ),
     })
@@ -41,7 +41,7 @@ const Artiseq = ({ query }: IArtiseq) => {
     const { isPending: areLemmasPending, data: lemmaData } = useQuery({
         queryKey: ['word', query],
         queryFn: () =>
-            fetch(`/api/utils/lemmatizer/lemmas?word=${encodeURIComponent(query)}`).then((res) =>
+            fetch(`/api/utils/lemmatizer/lemmas/?word=${encodeURIComponent(query)}`).then((res) =>
                 res.json(),
             ),
     })

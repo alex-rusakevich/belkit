@@ -6,5 +6,4 @@ urlpatterns = [
     path("api/utils/", include("utils.urls")),
     path("admin/", admin.site.urls),
     path("martor/", include("martor.urls")),
-    path("", include("frontend.urls")),
 ]

@@ -83,7 +83,6 @@ INSTALLED_APPS = [
     "rest_framework",
     "martor",
     "dictionary",
-    "frontend",
     "utils",
 ]
 
@@ -248,3 +247,5 @@ ALLOWED_HTML_ATTRIBUTES = [
     "width",
 ]
 # endregion
+
+APPEND_SLASH = False

@@ -39,12 +39,9 @@
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   },
-  "options": {
-    "allowedHosts": [
-      "localhost",
-      "127.0.0.1",
-      "0.0.0.0"
-    ],
-    "proxy": "https://localhost:8000/"
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "sharp"
+    ]
   }
 }
