@@ -33,7 +33,10 @@ class Article(models.Model):
     def save(self, **kwargs):
         self.body = nh3.clean(self.body)
         self.title = nh3.clean(self.title)
-        self.pronunciation = nh3.clean(self.pronunciation)
+
+        if self.pronunciation:
+            self.pronunciation = nh3.clean(self.pronunciation)
+
         super().save(**kwargs)
 
 
