@@ -8,7 +8,7 @@ class DslTextarea(Textarea):
 
     class Media:
         css = {"all": ("css/dsl_textarea.css",)}
-        js = ("js/dsl_textarea.js",)
+        js = ("js/dsl_textarea.js", "js/dsl_instruments.js")
 
     def __init__(self, attrs=None, char_limit=None):
         default_attrs = {"class": "dsl-textarea"}

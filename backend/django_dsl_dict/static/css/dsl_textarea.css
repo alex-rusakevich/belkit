@@ -5,11 +5,75 @@
 /* region Widget root & text editor panel */
 div.dsl-textarea-widget {
     display: flex;
-    gap: 10px;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
-div.dsl-textarea-widget>textarea {
+div.dsl-textarea-widget textarea {
     font-family: 'Courier New', Courier, monospace;
+    width: 100%;
+}
+
+div.dsl-editor-part {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+
+div.dsl-instruments {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+div.dsl-instruments>button {
+    display: block;
+    float: left;
+    padding: 3px 12px;
+    background: #ededed;
+    color: black;
+    font-weight: 400;
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 15px;
+    border: 0;
+    cursor: pointer;
+}
+
+div.dsl-instruments>button:hover {
+    background: #d7d7d7;
+}
+
+button.dsl-instrument-label {
+    color: green !important;
+    font-style: italic !important;
+}
+
+button.dsl-instrument-italics {
+    font-style: italic !important;
+}
+
+button.dsl-instrument-bold {
+    font-weight: bold !important;
+}
+
+button.dsl-instrument-reference {
+    text-decoration: underline !important;
+    color: blue !important;
+}
+
+button.dsl-instrument-paragraph {
+    color: #141211 !important;
+}
+
+button.dsl-instrument-paragraph::before {
+    content: "1) ";
+    color: #141211 !important;
+}
+
+button.dsl-instrument-example {
+    color: darkgray !important;
 }
 
 /* endregion */

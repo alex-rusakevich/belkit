@@ -1,7 +1,10 @@
 <div class="dsl-textarea-widget">
-    <textarea name="{{ widget.name }}" {% include "django/forms/widgets/attrs.html" %}>
-        {% if widget.value %}{{ widget.value }}{% endif %}
-    </textarea>
+    <div class="dsl-editor-part">
+        <div class="dsl-instruments"></div>
+
+        <textarea {% include "django/forms/widgets/attrs.html" %}
+            name="{{ widget.name }}">{% if widget.value %}{{ widget.value }}{% endif %}</textarea>
+    </div>
 
     <div class="dsl-result-render">
     </div>

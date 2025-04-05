@@ -14,6 +14,8 @@ function dsl_to_html(dsl) {
     var text = dsl.replace(/\[(m\d+)\]/g, (match) => { return `<div class='dsl-to-html-${slugify(match)}'>` })
     text = text.replace(/\[\/m\]/g, '</div>')
 
+    text = text.replace(/\[ref\](.*?)\[\/ref\]/g, '<a href="/search/$1/">$1</a>');
+
     text = text.replace(/\[(\w+)\]/g, (match) => { return `<span class='dsl-to-html-${slugify(match)}'>` })
     text = text.replace(/\[\/(\w+)\]/g, '</span>')
 

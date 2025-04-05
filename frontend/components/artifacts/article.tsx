@@ -33,7 +33,10 @@ const Article = function ({ id, title, pronunciation = '', body }: IArticle) {
                 [&_span.article-example]:text-gray-600
                 [&_span.article-label]:text-green-600
                 [&_span.article-label]:italic
-                [&_span.query-found]:text-blue-600
+                [&_span.query-found]:text-green-600
+                [&_a]:text-blue-400
+                [&_a]:underline
+                [&_a:hover]:text-blue-600
                 `} dangerouslySetInnerHTML={{ __html: body }} />
         </CardContent>
     </Card>)

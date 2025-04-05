@@ -30,11 +30,11 @@ class Article(models.Model):
         return _("<Артыкул '{}'>").format(self.title)
 
     def save(self, **kwargs):
-        self.body = self.body
-        self.title = self.title
+        self.body = self.body.strip()
+        self.title = self.title.strip()
 
         if self.pronunciation:
-            self.pronunciation = self.pronunciation
+            self.pronunciation = self.pronunciation.strip()
 
         super().save(**kwargs)
 
@@ -54,6 +54,6 @@ class Example(models.Model):
         return _("<Прыклад #{} '{}...'>").format(self.id, self.body_be[:64])
 
     def save(self, **kwargs):
-        self.body_be = self.body_be
-        self.body_zh = self.body_zh
+        self.body_be = self.body_be.strip()
+        self.body_zh = self.body_zh.strip()
         super().save(**kwargs)
