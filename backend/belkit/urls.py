@@ -7,7 +7,6 @@ urlpatterns = [
     path("api/dictionary/", include("dictionary.urls")),
     path("api/utils/", include("utils.urls")),
     path("admin/", admin.site.urls),
-    path("martor/", include("martor.urls")),
 ]
 
 if settings.DEBUG is True:

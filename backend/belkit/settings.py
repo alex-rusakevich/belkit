@@ -86,7 +86,6 @@ INSTALLED_APPS = [
     "cachalot",
     "haystack",
     "rest_framework",
-    "martor",
     "dictionary",
     "utils",
 ]
@@ -217,40 +216,5 @@ REST_FRAMEWORK = {
         "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
     ]
 }
-
-# region Configure markdown
-MARTOR_THEME = "semantic"
-
-MARTOR_TOOLBAR_BUTTONS = ["bold", "italic", "link", "help"]
-
-MARTOR_MARKDOWN_EXTENSIONS = [
-    "markdown.extensions.extra",
-    "markdown.extensions.nl2br",
-    "markdown.extensions.smarty",
-    "markdown.extensions.fenced_code",
-    "markdown.extensions.sane_lists",
-    "dictionary.martor.extensions.color_squares",
-]
-
-ALLOWED_HTML_ATTRIBUTES = [
-    "alt",
-    "class",
-    "color",
-    "colspan",
-    "datetime",
-    "height",
-    "href",
-    "id",
-    "name",
-    "reversed",
-    "rowspan",
-    "scope",
-    "src",
-    "style",
-    "title",
-    "type",
-    "width",
-]
-# endregion
 
 APPEND_SLASH = False

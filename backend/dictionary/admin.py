@@ -1,19 +1,19 @@
 from django.contrib import admin
 from django.db import models
+from django.forms import Textarea
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
-from martor.widgets import AdminMartorWidget
 
 from dictionary.models import Article, Example
 
 
 class ArticleAdmin(admin.ModelAdmin):
     class Media:
-        css = {"all": ("admin/css/martor-fix.css",)}
-        js = ("admin/js/martor-custom-buttons.js",)
+        css = {"all": ()}
+        js = ()
 
     formfield_overrides = {
-        models.TextField: {"widget": AdminMartorWidget},
+        models.TextField: {"widget": Textarea},
     }
 
     model = Article

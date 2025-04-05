@@ -1,4 +1,3 @@
-import nh3
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -31,11 +30,11 @@ class Article(models.Model):
         return _("<Артыкул '{}'>").format(self.title)
 
     def save(self, **kwargs):
-        self.body = nh3.clean(self.body)
-        self.title = nh3.clean(self.title)
+        self.body = self.body
+        self.title = self.title
 
         if self.pronunciation:
-            self.pronunciation = nh3.clean(self.pronunciation)
+            self.pronunciation = self.pronunciation
 
         super().save(**kwargs)
 
@@ -55,6 +54,6 @@ class Example(models.Model):
         return _("<Прыклад #{} '{}...'>").format(self.id, self.body_be[:64])
 
     def save(self, **kwargs):
-        self.body_be = nh3.clean(self.body_be)
-        self.body_zh = nh3.clean(self.body_zh)
+        self.body_be = self.body_be
+        self.body_zh = self.body_zh
         super().save(**kwargs)
