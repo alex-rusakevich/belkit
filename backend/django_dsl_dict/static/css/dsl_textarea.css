@@ -1,0 +1,58 @@
+:root {
+    --dsl-to-html-base-padding: 1rem;
+}
+
+/* region Widget root & text editor panel */
+div.dsl-textarea-widget {
+    display: flex;
+    gap: 10px;
+}
+
+div.dsl-textarea-widget>textarea {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* endregion */
+
+/* region Runs */
+
+.dsl-to-html-i {
+    font-style: italic;
+}
+
+.dsl-to-html-c {
+    color: green;
+}
+
+.dsl-to-html-b {
+    font-style: bold;
+}
+
+.dsl-to-html-e {
+    color: gray;
+}
+
+/* endregion */
+
+/* region Paragraphs */
+.dsl-to-html-m1 {
+    padding-left: calc(var(--dsl-to-html-base-padding) * 0);
+}
+
+.dsl-to-html-m2 {
+    padding-left: calc(var(--dsl-to-html-base-padding) * 1);
+}
+
+.dsl-to-html-m3 {
+    padding-left: calc(var(--dsl-to-html-base-padding) * 2);
+}
+
+.dsl-to-html-m4 {
+    padding-left: calc(var(--dsl-to-html-base-padding) * 3);
+}
+
+.dsl-to-html-m5 {
+    padding-left: calc(var(--dsl-to-html-base-padding) * 4);
+}
+
+/* endregion */

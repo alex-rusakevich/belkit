@@ -1,10 +1,10 @@
 from django.contrib import admin
 from django.db import models
-from django.forms import Textarea
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 
 from dictionary.models import Article, Example
+from django_dsl_dict.widgets import DslTextarea
 
 
 class ArticleAdmin(admin.ModelAdmin):
@@ -13,7 +13,7 @@ class ArticleAdmin(admin.ModelAdmin):
         js = ()
 
     formfield_overrides = {
-        models.TextField: {"widget": Textarea},
+        models.TextField: {"widget": DslTextarea},
     }
 
     model = Article

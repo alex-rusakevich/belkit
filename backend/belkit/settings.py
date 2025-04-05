@@ -86,6 +86,8 @@ INSTALLED_APPS = [
     "cachalot",
     "haystack",
     "rest_framework",
+    "django.forms",
+    "django_dsl_dict",
     "dictionary",
     "utils",
 ]
